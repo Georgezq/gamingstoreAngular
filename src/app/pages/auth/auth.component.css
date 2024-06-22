@@ -1,0 +1,43 @@
+.login-user, .login-password, .signup-user, .signup-password{
+  box-shadow: inset 0 0 0 2px #3d3d3d;
+  caret-color: #fff;
+  caret-shape: block;
+  text-indent: 20px;
+  color: #fff;
+}
+
+.login-user:hover, .login-password:hover, .signup-user:hover, .signup-password:hover{
+  box-shadow: inset 0 0 0 2px #ff5400;
+}
+
+input:focus{
+  border: none;
+  outline: 1px solid #ff5400;;
+  caret-color: auto;
+  background-color: hsla(0, 0%, 6%, .4);
+}
+
+input{
+  border: none;
+  padding: 12px 0;
+  background-color: hsla(0, 0%, 6%, .4);
+}
+
+#btnSignIn, #btnSignUp{
+  background-image: linear-gradient(to right, #84170D, #A14320);
+}
+
+#formulario-sesion, #formulario-crear {
+  width: 100%;
+}
+
+.formulario-login, .formulario-registro{
+  width: 50%;
+  margin: auto;
+}
+
+@media screen and (max-width: 768px){
+  #formulario-sesion #formulario-crear {
+      width: 75%;
+  }
+}

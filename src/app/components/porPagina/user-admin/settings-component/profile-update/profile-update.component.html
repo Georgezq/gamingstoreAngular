@@ -1,0 +1,33 @@
+<div class="container">
+  <div class="content-form">
+
+    <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+      <div class="mb-3">
+        <label for="username" class="form-label fs-5">Nombre de usuario</label>
+        <input type="text" class="name-user form-control w-50" formControlName="displayName">
+      </div>
+
+      <span class="fs-5">Link de las redes sociales</span>
+
+      <div class="row" formArrayName="redesSociales">
+        <div class="col-6 my-4">
+          <label for="discord" class="form-label">Discord</label>
+          <input type="url" class="name-user form-control" formControlName="discord" placeholder="DiscordTag#0000">
+        </div>
+        <div class="col-6 my-4">
+          <label for="steam" class="form-label">Steam</label>
+          <input type="url" class="name-user form-control" formControlName="steam"  placeholder="https://steamcommunity.com/id/...">
+        </div>
+        <div class="col-6 my-4">
+          <label for="youtube" class="form-label">Youtube</label>
+          <input type="url" class="name-user form-control" formControlName="youtube"  placeholder="https://youtube.com/...">
+        </div>
+      </div>
+
+      <button type="submit" class="btn updateData px-3 py-2">Enviar</button>
+
+    </form>
+
+
+  </div>
+</div>

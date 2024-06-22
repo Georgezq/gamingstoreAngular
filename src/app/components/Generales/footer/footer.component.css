@@ -1,0 +1,31 @@
+a{
+  color: white;
+  text-decoration: none;
+}
+
+/* Footer */
+
+footer{
+  background-color: #101010;
+}
+
+
+.social-discord {
+  flex-shrink: 0;
+  margin: 8px;
+  padding: 12px 15px;
+  transition: 0.1s;
+  background-color: rgba(88, 101, 242, 0.2);
+  border-radius: 100%;
+  text-decoration: none;
+}
+
+i{
+  font-size: 40px;
+  color: #ff4020;
+  font-size: 25px;
+}
+
+a:hover{
+  color: #ff4020;
+}

@@ -1,0 +1,109 @@
+<div class="container mt-5 mb-5 d-flex align-items-center justify-content-center w-100 flex-column gap-4">
+  <div class="filter-options">
+    <div class="dropdown position-relative d-inline-block pe-5">
+      <button class="dropbtn text fs-5 text-white pt-3 pb-3 ps-5 pe-5 text-start">
+        Sistemas
+      </button>
+      <div class="dropdown-content text-white w-75">
+        <a href="#" class="text">PC</a>
+        <a href="#">Mac</a>
+        <a href="#">Linux</a>
+        <a href="#">Switch</a>
+        <a href="#">Playstation 4</a>
+        <a href="#">Playstation 5</a>
+        <a href="#">Xbox One</a>
+        <a href="#">Xbox Series X|S</a>
+        <a href="#">GeForce Now</a>
+      </div>
+    </div>
+    <div class="dropdown position-relative d-inline-block pe-5">
+      <button class="dropbtn text fs-5 text-white pt-3 pb-3 ps-5 pe-5 text-start">
+        Plataformas
+      </button>
+      <div class="dropdown-content text-white w-75">
+        <a href="#">Battle.net</a>
+        <a href="#">EpicGames</a>
+        <a href="#">GOG.com</a>
+        <a href="#">Instang Gaming</a>
+        <a href="#">Microsoft Store</a>
+      </div>
+    </div>
+    <div class="dropdown position-relative d-inline-block pe-5">
+      <button class="dropbtn text fs-5 text-white pt-3 pb-3 ps-5 pe-5 text-start">
+        Géneros
+      </button>
+      <div class="dropdown-content text-white w-75">
+        <a href="#">Acción</a>
+        <a href="#">Aventura</a>
+        <a href="#">Cooperación</a>
+        <a href="#">Carreras</a>
+        <a href="#">FPS</a>
+        <a href="#">Free to Play</a>
+        <a href="#">Indies</a>
+        <a href="#">MMO</a>
+      </div>
+    </div>
+    <div class="dropdown position-relative d-inline-block pe-5">
+      <button class="dropbtn text fs-5 text-white pt-3 pb-3 ps-5 pe-5 text-start">
+        Ordenar por:
+      </button>
+      <div class="dropdown-content text-white w-75">
+        <a href="#">Supervivencias</a>
+        <a href="#">Descuento: Más alto</a>
+        <a href="#">Precio: Menor a Mayor</a>
+        <a href="#">Precio: Mayor a menor</a>
+        <a href="#">Salida: Reciente</a>
+        <a href="#">Salida: Antigua</a>
+      </div>
+    </div>
+  </div>
+  <div class="price-range d-flex text-white align-items-center justify-content-center ">
+    <h5 class="pt-4">Entre</h5>
+    <div class="container mt-3 text-white w-25">
+      <input type="number" id="minPriceInput" class="form-control"
+        style="background-color: hsla(0, 0%, 6%, .4); color: #fff;">
+    </div>
+    <h6 class="pt-3">y</h6>
+    <div class="container mt-3 w-25">
+      <input type="number" id="maxPriceInput" class="form-control"
+        style="background-color: hsla(0, 0%, 6%, .4); color: #fff;">
+    </div>
+    <h6 class="pt-4 pe-4">$</h6>
+    <div class="separador-buscador mt-3"></div>
+
+    <div class="search w-100 d-flex m-3">
+      <h5 class="pt-4">Buscar...</h5>
+      <div class="container mt-3 text-white">
+        <input type="text" id="nombreJuegoInput" class="form-control"
+          style="background-color: hsla(0, 0%, 6%, .4); color: #fff;">
+      </div>
+
+
+    </div>
+
+  </div>
+
+
+
+
+</div>
+
+<div class="games mt-5 mb-5">
+  <div class="container d-flex mt-5 fs-2 fw-bold text-white">Más vendidos</div>
+  <div class="container d-flex mt-5 d-flex flex-wrap align-items-center justify-content-center gap-4" id="gamescontent">
+
+    <app-gameslist></app-gameslist>
+
+    <div class="container mx-auto  mb-5" id="adminSection" style="display: none;">
+
+      <div class="content d-flex align-items-center justify-content-center">
+        <a href="admin.html" id="icon-add" class="d-flex m-auto gap-3 border-black rounded-4 px-4"
+          style="border: none; box-shadow: inset 0 0 0 2px #3d3d3d; background-color: hsla(0, 0%, 6%, .4);">
+          <i class="bi bi-plus-lg"></i>
+          <p class="my-auto"> Añadir Juegos...</p>
+        </a>
+      </div>
+
+    </div>
+  </div>
+</div>

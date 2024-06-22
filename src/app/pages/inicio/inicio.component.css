@@ -1,0 +1,157 @@
+/* Carrusel */
+
+#carousel{
+  filter: brightness(75%);
+}
+
+.carousel-caption {
+  position: absolute;
+  left: 25%;
+  transform: translate(-50%, -25%);
+}
+
+hr{
+  height: 5px;
+  width: 25%;
+  margin: 20px 37%;
+  background-image: linear-gradient(to right, #84170D, #A14320);
+}
+
+p{
+  font-size: 32px;
+}
+
+/* Panel de contenido */
+
+.trust-panel{
+  background-color: #000e;
+}
+
+i{
+  font-size: 40px;
+  color: #ff4020;
+}
+
+/* Comentarios */
+
+.partnerts-container{
+  background-color: #323232;
+}
+
+.comment{
+  color: #999;
+}
+
+.button{
+  border-radius: 12px;
+  box-sizing: border-box;
+  height: 60px;
+  background-image: linear-gradient(to right, #84170D, #A14320);
+}
+
+.items{
+  background-color: #323232;
+  margin: 15px;
+  width: calc(100% - 30px);
+  border-radius: 10px;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.user .user-avatar{
+  border-radius: 100%;
+  height: 50px;
+  width: 50px;
+}
+
+
+.text-comment{
+  color: #999;
+}
+
+.social-discord {
+  flex-shrink: 0;
+  margin: 8px;
+  padding: 12px 15px;
+  transition: 0.1s;
+  background-color: rgba(88, 101, 242, 0.2);
+  border-radius: 100%;
+  text-decoration: none;
+}
+
+/* Categorias */
+
+.item-cat {
+  background-size: cover;
+  background-position: center;
+  width: 375px;
+  height: 225px;
+  border-radius: 12px;
+  margin: 10px 0px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.item-cat::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.content-cat {
+  color: white;
+}
+
+.cover-cat img {
+  width: 100%;
+  height: 250px;
+  transition: transform 0.3s ease;
+  transform-origin: bottom right;
+  bottom: 13px;
+
+}
+
+.item-cat:hover .cover-cat img {
+  transform: scale(1.03);
+}
+
+.categories-container .headline-visual {
+  text-align: center;
+}
+
+.categories-container .headline-visual .container {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.categories-items {
+  gap: 20px;
+}
+
+
+
+/* VIDEOS */
+
+.cover picture, .cover video {
+  transition: transform 1s ease;
+}
+
+.cover video {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.cover:hover video {
+  display: block;
+  transform: scale(1.1);
+}

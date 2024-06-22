@@ -1,0 +1,40 @@
+<div class="container-fluid p-0" >
+  <mat-drawer-container class="example-container " style="height: 100vh;">
+    <mat-drawer mode="side" class="p-3 w-100" opened style="max-width: 300px;">
+
+      <div class="container-fluid p-3 text-center">
+        <p class="text-white fs-4">Administracion</p>
+
+        <div class="row d-flex flex-column">
+
+          <div class="col my-4">
+            <a class="btnaside p-3 rounded-4 fs-6" id="asidebutton" [ngClass]="{'active': activeIndex === 0}"
+            (click)="changeClass(0)">Dashboard Principal</a>
+          </div>
+
+          <div class="col my-4" id="asidebutton">
+            <a class="btnaside p-3 rounded-4 fs-6" id="asidebutton" [ngClass]="{'active': activeIndex === 1}"
+            (click)="changeClass(1)">Juegos</a>
+          </div>
+
+        </div>
+
+      </div>
+
+    </mat-drawer>
+    <mat-drawer-content>
+
+      <div class="container-fluid p-4" *ngIf="activeIndex === 0">
+        <!-- Contenido para Dashboard Principal -->
+        <app-cardsinfo></app-cardsinfo>
+      </div>
+
+      <div class="container-fluid p-4" *ngIf="activeIndex === 1">
+        <!-- Contenido para Juegos -->
+        <app-adminjuegos></app-adminjuegos>
+      </div>
+
+    </mat-drawer-content>
+  </mat-drawer-container>
+
+</div>

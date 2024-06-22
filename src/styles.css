@@ -1,1 +1,109 @@
 /* You can add global styles to this file, and also import other style files */
+@import "primeng/resources/themes/lara-light-blue/theme.css";
+@import "primeng/resources/primeng.css";
+
+*{
+  font-family: 'sans-serif';
+}
+
+body{
+  background-color: #272727;
+}
+
+footer{
+  background-color: #101010;
+}
+
+a{
+  color: white;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.icons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.social-discord {
+  flex-shrink: 0;
+  margin: 8px;
+  padding: 12px 15px;
+  transition: 0.1s;
+  background-color: rgba(88, 101, 242, 0.2);
+  border-radius: 100%;
+  text-decoration: none;
+}
+
+i{
+  font-size: 40px;
+  color: #ff4020;
+}
+
+.separador{
+  width: 1px;
+  height: 50px;
+  background-color: #6d6d6d;
+  margin: 0 auto;
+}
+
+#icon-add:hover{
+  p{
+      color: #ff4020;
+  }
+}
+
+.btn{
+  color: white;
+  border: none;
+}
+
+.active-btn {
+  color: #ff4020;
+  text-decoration: underline;
+  text-decoration-color: #dd4020;
+}
+
+
+.separador {
+  width: 1px;
+  height: 100px;
+  background-color: #ffffff;
+  margin: 0 auto;
+}
+
+.separadorx {
+  width: 100%;
+  height: 1px;
+  background-color: #6d6d6d;
+  margin: 0 auto;
+}
+
+
+.separador2 {
+  width: 1px;
+  height: 75%;
+  background-color: #6d6d6d;
+  margin: 0 auto;
+}
+
+.separador3 {
+  width: 100%;
+  height: 1px;
+  background-color: #6d6d6d;
+  margin: 0 auto;
+}
+
+.separadorContact {
+  width: 100%;
+  height: 1px;
+  background-color: #6d6d6d;
+  margin: 0 auto;
+}
+
+
+
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

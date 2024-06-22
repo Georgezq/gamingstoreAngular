@@ -1,0 +1,58 @@
+.content-modal{
+  background-color: #323232;
+}
+
+ul{
+  list-style: none;
+}
+
+#modal-review{
+  background: linear-gradient(10deg,#ff8000,transparent) #ff4020;
+  color: white;
+}
+
+.content-destacadas{
+  background-color: #323232;
+}
+
+.content-recientes{
+  background-color: #1d1d1d;
+}
+
+li{
+  color: #999;
+}
+
+p-divider{
+  color: #6d6d6d;
+}
+
+.usuario-profile:hover .img-user {
+  border: 2px solid #ff8000;
+  transform: .2s ease-in-out ;
+}
+
+.like, .dislike{
+  border: 1px solid #999;
+  border-radius: 100px;
+  height: 40px;
+}
+
+
+
+i{
+  color: #999;
+}
+
+i {
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.selected-like {
+  color: #28a745;
+}
+
+.selected-dislike {
+  color: #dc3545;
+}

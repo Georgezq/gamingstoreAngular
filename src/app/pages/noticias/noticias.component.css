@@ -1,0 +1,35 @@
+/* Noticias */
+
+.img-new{
+  filter: brightness(75%);
+}
+
+.links-news:hover{
+  text-decoration: underline;
+}
+
+.listening-nws .row{
+  width: 75%;
+}
+
+.panel-store{
+  width: 75%;
+}
+
+.view-all{
+  padding: 5px 18px;
+  border: 1px solid #fff;
+  border-radius: 12px;
+  white-space: normal;
+}
+
+.trending-container{
+  margin-right: 10px;
+}
+
+
+@media screen and (max-width: 992px) {
+  .listening-nws .row{
+      width: 100%;
+  }
+}

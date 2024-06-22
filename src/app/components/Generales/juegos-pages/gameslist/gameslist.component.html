@@ -1,0 +1,29 @@
+<div class="container d-flex  d-flex flex-wrap align-items-center justify-content-center gap-3" id="gamescontent">
+
+@for (game of (games$ | async | slice:0:numElementos) ; track game.id) {
+  <div class="item">
+    <a [routerLink]="['/comprar', game.id]" class="cover position-relative d-inline-block overflow-hidden object-fit-cover"
+      (mouseenter)="playVideo($event)" (mouseleave)="pauseVideo($event)">
+      <picture>
+        <img [style.view-transition-name]="'transition-image-'+game.id"
+          [src]="game.imagen" appNotImage
+          alt="" (load)="lazyLoadImage($event)" />
+      </picture>
+      <video preload="none" loop muted playsinline style="max-width: 350px; max-height: 200px; object-fit: cover">
+        <source
+          [src]="game.video"
+          type="video/webm" />
+      </video>
+    </a>
+
+    <div class="information overflow-hidden text-white d-flex">
+      <div class="text-game" [ngStyle]="{'view-transition-name': game.id}">
+        {{ game.nombre }}
+      </div>
+      <div class="price ms-auto">
+        {{ game.precio }}$
+      </div>
+    </div>
+  </div>
+}
+</div>

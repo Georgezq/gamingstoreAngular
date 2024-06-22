@@ -1,0 +1,57 @@
+<nav class="navbar navbar-expand-lg bg-dark order-bottom border-body" data-bs-theme="dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" [routerLink]="['/']">
+      <img src="assets/logo1.png" style="width: 150px; height: 100px; object-fit: contain" alt="Logo" />
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse mx-auto text-center align-items-center justify-content-center" id="navbarSupportedContent">
+      <ul class="navbar-nav mb-2 mb-lg-0 justify-content-center fw-bold">
+        <li class="nav-item">
+          <a class="nav-link pe-4 ps-4" aria-current="page" [routerLink]="['/tendencias']">Tendencias</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link pe-4 ps-4" [routerLink]="['/comunidad']">Comunidad</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link pe-4 ps-4" [routerLink]="['/noticias']">Noticias</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link pe-4 ps-4" [routerLink]="['/soporte']">Soporte</a>
+        </li>
+
+      </ul>
+    </div>
+    <div class="content-icons gap-4 pe-5 d-flex align-items-center justify-content-center" id="userIconContainer" >
+      <a class="position-relative">
+        <i class="bi bi-cart-plus " style="font-size: 25px; ">
+          <span id="badge" style="width: 25px; height: 25px;" class="d-flex align-items-center justify-content-center position-absolute  top-0 start-100 translate-middle badge rounded-circle">
+            9
+            <!-- <span class="visually-hidden">unread messages</span> -->
+          </span>
+        </i>
+      </a>
+      @if(!isLogged){
+        <a [routerLink]="['/login']" id="userIconLink"><i class="bi bi-person-circle" style="font-size: 25px;"></i></a>
+      } @else {
+        <div class="user-menu-container">
+          <a  (click)="mouseEnter()" ><img id="userLogged" class="rounded-circle" style="width: 50px; height: 50px;" [src]="photoUrl" appDefaultProfileImage alt=""></a>
+          <div (mouseleave)="mouseLeave()" class="user-menu-dropdown" [class.show]="isMenuOpen">
+            <a class="dropdown-item" [routerLink]="['soporte']">Soporte 24/7</a>
+            <div class="dropdown-divider"></div>
+              <a class="dropdown-item" [routerLink]="['/user',usuarioId]">Panel de control</a>
+              <a class="dropdown-item" [routerLink]="['/user',usuarioId,'pedidos']">Mis pedidos</a>
+              <a class="dropdown-item" [routerLink]="['/user',usuarioId,'deseados']">Wishlist</a>
+              <a class="dropdown-item" [routerLink]="['/user',usuarioId,'cuenta']">Configuracion</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" (click)="signOut()">Desconectarse</a>
+          </div>
+        </div>
+      }
+
+    </div>
+
+    </div>
+</nav>

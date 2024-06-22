@@ -1,0 +1,18 @@
+.example-container {
+  width: auto;
+  background-color: #272727;
+}
+
+mat-drawer{
+  background-color: #272727;
+}
+
+.active{
+  background-color: #ff5400;
+  transition: ease-out .5s;
+}
+
+.active:hover{
+  background-color: #ff4020;
+  transition: ease-out .5s;
+}

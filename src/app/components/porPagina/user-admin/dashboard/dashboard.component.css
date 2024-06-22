@@ -1,0 +1,16 @@
+.user-widget{
+  background-color: #101010;
+}
+
+
+
+.separator{
+  height: 1px;
+  margin: .5rem 0;
+  overflow: hidden;
+  background: hsla(0, 0%, 100%, .1)
+}
+
+.wishlist-widget{
+  background-color: #323232;
+}

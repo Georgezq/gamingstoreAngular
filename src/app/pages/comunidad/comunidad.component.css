@@ -1,0 +1,39 @@
+/* Comentarios */
+
+.items{
+  background-color: #323232;
+  margin: 15px;
+  width: calc(100% - 30px);
+  border-radius: 10px;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.user .user-avatar{
+  border-radius: 100%;
+  height: 50px;
+  width: 50px;
+}
+
+
+.text-comment{
+  color: #999;
+}
+
+
+.cover picture, .cover video {
+  transition: transform 1s ease;
+}
+
+.cover video {
+  display: none;
+  top: 0;
+  left: 0;
+  bottom: 0;
+
+}
+
+.cover:hover video {
+  display: block;
+  transform: scale(1.1);
+}

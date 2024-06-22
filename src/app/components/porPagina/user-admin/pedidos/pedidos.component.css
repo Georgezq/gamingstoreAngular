@@ -1,0 +1,12 @@
+.alert-message{
+  background-color: rgba(0, 171, 255, .15);;
+  height: 50px;
+  background-image: url("https://www.instant-gaming.com/themes/igv2/images/icons/alerts/icon-notice.svg");
+  background-repeat: no-repeat;
+  background-position: 20px;
+  background-size: 25px;
+}
+
+.mesaage{
+  color: #00abff;
+}

@@ -1,0 +1,59 @@
+<div class="container-fuild">
+
+    <div class="row">
+      <div class="col-4 d-flex ">
+        <div class="list">
+          <ul>
+
+            <li>
+              <a class="user-link d-flex align-items-center gap-3" [routerLink]="['update-profile']" [routerLinkActive]="'active'">
+                <div class="icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ff4020" class="bi bi-person-circle" viewBox="0 0 16 16">
+                    <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0"/>
+                    <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"/>
+                  </svg>
+                </div>
+                <div class="content-info">
+                  <div class="title">
+                    Personaliza tu perfil
+                  </div>
+                  <div class="subtitle" style="color: #999;">
+                    Gamertag, links de redes sociales
+                  </div>
+                </div>
+                <div class="icon-arrow"></div>
+              </a>
+            </li>
+
+            <li class="mt-4">
+              <a class="user-link d-flex align-items-center gap-3" [routerLink]="['update-email']" [routerLinkActive]="'active'">
+                <div class="icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ff4020" class="bi bi-lock" viewBox="0 0 16 16">
+                    <path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2m3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2M5 8h6a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1"/>
+                  </svg>
+                </div>
+                <div class="content-info">
+                  <div class="title">
+                    Email y contraseña
+                  </div>
+                  <div class="subtitle" style="color: #999;">
+                    Gestiona tu email y contraseña
+                  </div>
+                </div>
+                <div class="icon-arrow"></div>
+              </a>
+            </li>
+
+          </ul>
+        </div>
+        <div class="separator"></div>
+      </div>
+
+
+
+      <div class="col-8">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+
+</div>

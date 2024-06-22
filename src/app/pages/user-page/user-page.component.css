@@ -1,0 +1,25 @@
+ul{
+  list-style: none;
+  color: white ;
+
+}
+
+ul li{
+  cursor: pointer;
+}
+
+.active{
+  color: #ff5400;
+  transition: ease-out .2s;
+}
+
+ul li a:hover{
+  color: #ff4020;
+}
+
+.separator-list{
+  height: 1px;
+  margin: .5rem 0;
+  overflow: hidden;
+  background: hsla(0, 0%, 100%, .1)
+}
