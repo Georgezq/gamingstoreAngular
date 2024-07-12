@@ -1,13 +1,12 @@
 import { NgClass, NgIf } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import {MatSidenavModule} from '@angular/material/sidenav';
-import { AdminjuegosComponent } from '../../porPagina/adminjuegos/adminjuegos.component';
-import { CardsinfoComponent } from '../../porPagina/cardsinfo/cardsinfo.component';
+import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-sidenav',
   standalone: true,
-  imports: [MatSidenavModule, NgClass, NgIf, AdminjuegosComponent, CardsinfoComponent],
+  imports: [MatSidenavModule, NgClass, NgIf, RouterLink, RouterOutlet, RouterLinkActive],
   templateUrl: './sidenav.component.html',
   styleUrl: './sidenav.component.css'
 })

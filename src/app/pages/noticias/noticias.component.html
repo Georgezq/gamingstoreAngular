@@ -5,29 +5,19 @@
           <div class="listening-nws ">
               <div class="row  d-flex mx-auto justify-content-center align-items-center">
 
+                @for (noticia of noticias; track $index) {
 
-                  <div class="col-6 col-sm-6">
-                      <a class="links-news" href="">
-                          <picture>
-                              <img class="img-fluid img-new w-100" src="https://gaming-cdn.com/images/news/articles/6103/cover/1000x563/a-que-vamos-a-jugar-este-fin-de-semana-44-cover662bbaa0a97e2.jpg" alt="">
-                          </picture>
-                          <div class="content-news">
-                              <div class="title fs-5">¿A qué vamos a jugar este fin de semana? #44</div>
-                          </div>
-                      </a>
+                  <div class="col h-100" style="min-height: 250px;">
+                    <a class="links-news" (click)="goToNoticia(noticia.titulo, noticia['id_noticias'])">
+                      <picture>
+                        <img class="img-fluid img-new w-100" [src]="noticia.imagen">
+                      </picture>
+                      <div class="content-news" style="min-height: 50px;">
+                        <div class="title fs-6">{{noticia.titulo}}</div>
+                      </div>
+                    </a>
                   </div>
-                  <div class="col-6 col-sm-6">
-                      <a class="links-news" href="">
-                          <picture>
-                              <img class="img-fluid img-new w-100" src="https://gaming-cdn.com/images/news/articles/6100/cover/1000x563/manor-lords-ya-esta-disponible-en-acceso-anticipado-cover662bb30728139.jpg" alt="">
-                          </picture>
-                          <div class="content-news">
-                              <div class="title fs-5">Manor Lords ya está disponible en acceso anticipado</div>
-                          </div>
-                      </a>
-                  </div>
-
-
+                }
 
               </div>
           </div>
@@ -35,7 +25,7 @@
   </div>
 </div>
 
-<div class="container mt-5 mb-5">
+<div class="container my-5">
   <h4 class="text-white">Últimas noticias</h4>
   <div class="row ">
 
@@ -66,7 +56,7 @@
             </div>
         </a>
 
-        
+
         <div class="separadorx mt-4"></div>
 
         <a href="" class="d-flex mt-5 w-100 gap-4 align-items-center justify-content-start flex-column flex-md-row">
@@ -109,75 +99,31 @@
               <div class="d-flex align-items-center justify-content-center align-items-lg-start justify-content-lg-start" style="flex-direction: column;">
                   <div class="headline d-flex gap-5 mt-4">
                       <h4 class="text-white">Juegos populars</h4>
-                      <a class="view-all" target="_blank" href="">Ver todo</a>
+                      <a class="view-all" [routerLink]="['/tendencias']">Ver todo</a>
                   </div>
 
-                  <div class="trending-container mt-5 w-100">
-                      <a href="" class="d-flex gap-3  align-items-center justify-content-center">
-                          <picture class="cover">
-                              <img style="border-radius: 12px;" src="https://gaming-cdn.com/images/products/8253/150x86/manor-lords-pc-juego-steam-europe-cover.jpg?v=1714269153" alt="" class="picture">
-                          </picture>
-                          <div class="content w-100">
-                              <div class="text">Manor Lords</div>
-                              <div class="date">
-                                  <div class="number">2024-04-25</div>
-                              </div>
+                  @for (juego of juegos; track $index) {
+
+
+                    <div class="trending-container mt-5 w-100">
+                      <a [routerLink]="['/comprar', juego.id]" class="d-flex gap-3  align-items-center justify-content-center">
+                        <picture class="cover">
+                          <img style="border-radius: 12px; width: 150px; max-height: 100px;" [src]="juego.imagen" class="picture">
+                        </picture>
+                        <div class="content w-100">
+                          <div class="text">{{juego.nombre}}</div>
+                          <div class="date">
+
+                              <div class="number">{{juego.fechaLanzamiento}}</div>
+
+                            </div>
                           </div>
-                          <div class="price">21.99$</div>
-                      </a>
-                  </div>
+                          <div class="price">{{juego.precio | currency}}</div>
+                        </a>
+                      </div>
+                      <div class="separador3 mt-4"></div>
+                }
 
-                  <div class="separador3 mt-4"></div>
-
-                  <div class="trending-container mt-5 w-100">
-                      <a href="" class="d-flex gap-3 align-items-center justify-content-center">
-                          <picture class="cover">
-                              <img style="border-radius: 12px;" src="https://gaming-cdn.com/images/products/9575/150x86/helldivers-2-pc-juego-steam-europe-cover.jpg?v=1714269153" alt="" class="picture">
-                          </picture>
-                          <div class="content w-100">
-                              <div class="text">Helldivers 2</div>
-                              <div class="date">
-                                  <div class="number">2024-02-07</div>
-                              </div>
-                          </div>
-                          <div class="price">30.00$</div>
-                      </a>
-                  </div>
-
-                  <div class="separador3 mt-4"></div>
-
-                  <div class="trending-container mt-5 w-100">
-                      <a href="" class="d-flex gap-3 align-items-center justify-content-center">
-                          <picture class="cover">
-                              <img style="border-radius: 12px;" src="https://gaming-cdn.com/images/products/16034/150x86/dead-island-2-gold-edition-gold-edition-pc-juego-steam-cover.jpg?v=1714269153" alt="" class="picture">
-                          </picture>
-                          <div class="content w-100">
-                              <div class="text">Dead Island 2 Gold Edition</div>
-                              <div class="date">
-                                  <div class="number">2024-04-01</div>
-                              </div>
-                          </div>
-                          <div class="price">31.00$</div>
-                      </a>
-                  </div>
-
-                  <div class="separador3 mt-4"></div>
-
-                  <div class="trending-container mt-5 w-100">
-                      <a href="" class="d-flex gap-3 align-items-center justify-content-center">
-                          <picture class="cover">
-                              <img style="border-radius: 12px;" src="https://gaming-cdn.com/images/products/11144/150x86/another-crab-s-treasure-pc-juego-steam-cover.jpg?v=1714269153" alt="" class="picture">
-                          </picture>
-                          <div class="content w-100">
-                              <div class="text">Another Crab's..
-                              </div>
-                              <div class="date">
-                                  <div class="number">2024-04-24</div>
-                              </div>
-                          </div>
-                          <div class="price">12.00$</div>
-                      </a>
-                  </div>
               </div>
           </div>
 

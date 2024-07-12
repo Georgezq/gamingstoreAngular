@@ -11,24 +11,36 @@
             <div class="mb-3">
               <label for="imagen" class="form-label">Imagen</label>
               <input id="imagen" formControlName="imagen" class="form-control" placeholder="Imagen">
+              <div *ngIf="juegoForm.get('imagen').invalid && (juegoForm.get('imagen').dirty || juegoForm.get('imagen').touched)">
+                <small *ngIf="juegoForm.get('imagen').errors['required']">El link de la imagen es requerida.</small>
+              </div>
             </div>
               <div class="mb-3">
               <label for="nombre" class="form-label">Nombre</label>
               <input id="nombre" formControlName="nombre" class="form-control" placeholder="Nombre">
+              <div *ngIf="juegoForm.get('nombre').invalid && (juegoForm.get('nombre').dirty || juegoForm.get('nombre').touched)">
+                <small *ngIf="juegoForm.get('nombre').errors['required']">El nombre es requerido.</small>
+              </div>
             </div>
             <div class="mb-3">
               <label for="precio" class="form-label">Precio</label>
-              <input id="precio" formControlName="precio" class="form-control" placeholder="Precio">
+              <input type="number" id="precio" formControlName="precio" class="form-control" placeholder="Precio">
+              <div *ngIf="juegoForm.get('precio').invalid && (juegoForm.get('precio').dirty || juegoForm.get('precio').touched)">
+                <small *ngIf="juegoForm.get('precio').errors['required']">El precio es requerido.</small>
+              </div>
             </div>
             <div class="mb-3">
               <label for="video" class="form-label">Video</label>
               <input id="video" formControlName="video" class="form-control" placeholder="Video">
+              <div *ngIf="juegoForm.get('video').invalid && (juegoForm.get('video').dirty || juegoForm.get('video').touched)">
+                <small *ngIf="juegoForm.get('video').errors['required']">El link del video es requerida.</small>
+              </div>
             </div>
             <div class="mb-3">
               <label for="portada" class="form-label">Portada</label>
               <input id="portada" formControlName="portada" class="form-control" placeholder="Portada">
             </div>
-            <button type="submit" class="btn btn-primary">Agregar Juego</button>
+            <button type="submit"  class="btn btn-primary">Agregar Juego</button>
           </form>
         </div>
       </div>

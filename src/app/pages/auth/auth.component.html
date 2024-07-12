@@ -43,7 +43,7 @@
       </div>
       </form>
 
-    <form action="" id="formulario-crear" *ngIf="!showLogin" [formGroup]="formReg" (submit)="registerWithEmailAndPassword()">
+    <form id="formulario-crear" *ngIf="!showLogin" [formGroup]="formReg" (submit)="registerWithEmailAndPassword()">
       <div class="formulario-registro mx-auto">
         <h5 class="mb-4 fw-bold">¡Registrate!</h5>
         <div class="login d-flex flex-column w-75 mx-auto gap-4">

@@ -1,8 +1,9 @@
-import { Component, Input, OnInit, inject } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, inject } from '@angular/core';
 import { AsyncPipe, NgStyle, SlicePipe } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { BehaviorSubject} from 'rxjs';
-import { JuegosService } from '../../../../services/games/juegos.service';
+import { JuegosService } from '../../../../services/firebase/games/juegos.service';
+import { ToggleServiceService } from '../../../../services/toggle-service.service';
 
 @Component({
   selector: 'app-gameslist',
@@ -11,27 +12,39 @@ import { JuegosService } from '../../../../services/games/juegos.service';
   templateUrl: './gameslist.component.html',
   styleUrl: './gameslist.component.css'
 })
-export class GameslistComponent {
+export class GameslistComponent implements OnInit {
 
   @Input() numElementos: number; // Acepta el número de elementos desde el componente padre
+  verPreview: boolean = true;
+
 
   juegos: any[] = [];
 
   private _gamesService = inject(JuegosService);
-
+  private _toggleSerive = inject(ToggleServiceService);
+  
   constructor(){
 
+  }
+  ngOnInit(): void {
+    this._toggleSerive.currentState.subscribe(state => {
+      this.verPreview = state;
+    });  
   }
 
   games$ = this._gamesService.obtenerJuegos();
 
   playVideo(event: MouseEvent): void {
-    const video = (event.currentTarget as HTMLElement).querySelector('video') as HTMLVideoElement;
-    if (video) {
-      video.muted = true; // Asegura que el video esté silenciado
-      video.play().catch((error) => {
-        console.error('Error al reproducir el video:', error);
-      });
+    if(this.verPreview == true){
+      const video = (event.currentTarget as HTMLElement).querySelector('video') as HTMLVideoElement;
+      if (video) {
+        video.muted = true; // Asegura que el video esté silenciado
+        video.play().catch((error) => {
+          console.error('Error al reproducir el video:', error);
+        });
+      }
+    } else {
+      return;
     }
   }
 

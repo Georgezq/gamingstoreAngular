@@ -1,5 +1,5 @@
 export interface Informacion extends InformacionForm{
-  id: string;
+  id?: string;
 }
 
 export interface Especificaciones {

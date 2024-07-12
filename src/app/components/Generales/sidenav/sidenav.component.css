@@ -7,9 +7,15 @@ mat-drawer{
   background-color: #272727;
 }
 
+a{
+  padding: 15px 20px;
+  border-radius: 12px;
+  width: 100%;
+}
+
 .active{
   background-color: #ff5400;
-  transition: ease-out .5s;
+  transition: ease-out .2s;
 }
 
 .active:hover{

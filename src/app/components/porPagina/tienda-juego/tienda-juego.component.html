@@ -1,116 +1,117 @@
-@if ("juego$ | async as juego") {
-  @if ("informacion") {
+@if ("juego$ | async as juego") { @if ("informacion") {
+<p-toast />
+<p-confirmDialog />
 
-
-<div class="container-fluid  p-0 position-relative" style="height: 100vh;">
-
+<div class="container-fluid p-0 position-relative" style="height: 100vh">
   <div class="row w-100 m-0">
     <div class="col p-0">
-      <div class="image-container ">
-        <img class="img-fluid w-100" [src]="juego?.portada" alt="Imagen recortada">
+      <div class="image-container">
+        <img class="img-fluid w-100" [src]="juego?.portada" alt="Imagen recortada" />
       </div>
     </div>
   </div>
 
-
-  <div class="row w-100 m-0 z-3 " id="info">
-    <div class="container d-flex flex-column align-items-center">
+  <div class="row w-100 m-0 z-3" id="info">
+    <div class="container-fluid d-flex flex-column align-items-center">
       <div id="contentAll"
-        class="container-fluid  panel-container d-flex flex-column flex-sm-row align-items-center gap-5">
-
+        class="container-fluid panel-container d-flex flex-column flex-sm-row align-items-center gap-5">
         <!--Imagen-->
-        <div class="container imagen-preview h-auto ">
-          <img [style.view-transition-name]="'transition-image-'+juego?.id" [src]="juego?.imagen" appNotImage
-            class="img-fluid preview w-100 h-100 rounded-3 " alt="Imagen preview juego">
+        <div class="container imagen-preview h-auto">
+          <img [style.view-transition-name]="'transition-image-' + juego?.id" [src]="juego?.imagen" appNotImage
+            class="img-fluid preview w-100 h-100 rounded-3" alt="Imagen preview juego" />
         </div>
 
         <!--Información del juego-->
 
         <div class="container info-pago rounded-3 h-100 text-center d-flex align-items-center justify-content-center">
-          <div class="content-info text-white   p-0 p-sm-2 ">
-
-            <div class="col " id="nombreJuego" [ngStyle]="{'view-transition-name': juego?.id}">{{juego?.nombre}}</div>
+          <div class="content-info text-white p-0 p-sm-2">
+            <div class="col" id="nombreJuego" [ngStyle]="{ 'view-transition-name': juego?.id }">
+              {{ juego?.nombre }}
+            </div>
 
             <div class="col amount d-flex flex-row my-1 my-md-4 gap-5 align-items-center justify-content-center">
-              <div class="descuentos "><del>30%</del></div>
-              <div class="descuento" style="color: #FF4020;">-60%</div>
-              <div class="total fs-2">{{juego?.precio}}$</div>
+              <div class="descuentos"><del>30%</del></div>
+              <div class="descuento" style="color: #ff4020">-60%</div>
+              <div class="total fs-2">{{ juego?.precio }}$</div>
             </div>
 
             <div class="col">
-              <div class="content-options d-flex align-items-center justify-content-center gap-4 ">
-                <div class="favorite ">
+              <div class="content-options d-flex align-items-center justify-content-center gap-4">
+                <div class="favorite">
                   <span>
                     @if (inWishlist) {
-                    <button (click)="removeFromWishlist()" [pTooltip]="favorites" severity="secondary" tooltipPosition="bottom"
-                            class="btn btn-primary rounded-3 py-2" style="background: rgba(255, 10, 78, .2);" type="button">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="#ff0a4e" class=" bi bi-heart-fill" viewBox="0 0 16 16">
-                              <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314"/>
-                            </svg>                    </button>
-                      <ng-template #favorites>
-                          <div class="d-flex align-items-center w-100">
-                              <span class="w-100">Añadido a tu lista de deseos</span>
-                          </div>
-                      </ng-template>
+                    <button (click)="removeFromWishlist()" [pTooltip]="favorites" severity="secondary"
+                      tooltipPosition="bottom" class="btn btn-primary rounded-3 py-2"
+                      style="background: rgba(255, 10, 78, 0.2)" type="button">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="#ff0a4e"
+                        class="bi bi-heart-fill" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd"
+                          d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314" />
+                      </svg>
+                    </button>
+                    <ng-template #favorites>
+                      <div class="d-flex align-items-center w-100">
+                        <span class="w-100">Añadido a tu lista de deseos</span>
+                      </div>
+                    </ng-template>
                     } @else {
-                      <button (click)="addToWishlist()" [pTooltip]="nofavorites" severity="secondary" tooltipPosition="bottom"
-                            class="btn btn-primary rounded-3 py-2" style="background:#FF4020;" type="button">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-heart" viewBox="0 0 16 16">
-                              <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143q.09.083.176.171a3 3 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15"/>
-                            </svg>                          </button>
-                      <ng-template #nofavorites>
-                          <div class="d-flex align-items-center">
-                              <span> Añadir a mi wishlist </span>
-                          </div>
-                      </ng-template>
+
+                    <button (click)="addToWishlist()" [pTooltip]="nofavorites" severity="secondary"
+                      tooltipPosition="bottom" class="btn btn-primary rounded-3 py-2" style="background: #ff4020"
+                      type="button">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
+                        class="bi bi-heart" viewBox="0 0 16 16">
+                        <path
+                          d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143q.09.083.176.171a3 3 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15" />
+                      </svg>
+                    </button>
+
+                    <ng-template #nofavorites>
+                      <div class="d-flex align-items-center">
+                        <span> Añadir a mi wishlist </span>
+                      </div>
+                    </ng-template>
                     }
-
-
                   </span>
                 </div>
                 <div class="addcar text-center">
-                  <button class="btn btn-primary rounded-3 px-1 px-md-5" style="background: #FF4020;" type="button">
+                  <button (click)="addToCart()" class="btn btn-primary rounded-3 px-1 px-md-5"
+                    style="background: #ff4020" type="button">
                     <i class="bi bi-cart-dash fs-4 text-white"></i>
                     Añadir a la cesta
                   </button>
                 </div>
               </div>
             </div>
-
           </div>
         </div>
-
       </div>
 
       <!--Contenido del juego-->
 
       <div id="contentAll"
-        class="container-fluid my-5  panel-container d-flex flex-column flex-sm-row align-items-center gap-5">
-
-        <div class="col-12 col-md-6 acercaDe ">
-          <div class="container ">
-            <div class="textoPrincipal text-white fs-4">
-              Acerca de
-            </div>
+        class="container-fluid my-5 panel-container d-flex flex-column flex-sm-row align-items-center gap-5">
+        <div class="col-12 col-md-6 acercaDe">
+          <div class="container">
+            <div class="textoPrincipal text-white fs-4">Acerca de</div>
             <div class="contenido">
-              <p>{{informacion?.acercade}}</p>
+              <p>{{ informacion?.acercade }}</p>
             </div>
           </div>
         </div>
 
         <div class="col-12 col-md-6 infoPrincipal">
-          <div class="container ">
+          <div class="container">
             <div class="textoPrincipal text-white fs-4">
               Información adicional
             </div>
-            <div class="contenido ">
-
+            <div class="contenido">
               <div class="infoad d-flex justify-content-between">
                 <div class="info">
                   <p>Desarrollador:</p>
                 </div>
                 <div class="info">
-                  <p class="text-white">{{informacion?.desarrollador}}</p>
+                  <p class="text-white">{{ informacion?.desarrollador }}</p>
                 </div>
               </div>
 
@@ -119,7 +120,7 @@
                   <p>Distribuidor:</p>
                 </div>
                 <div class="info">
-                  <p class="text-white">{{informacion?.distribuidor}}</p>
+                  <p class="text-white">{{ informacion?.distribuidor }}</p>
                 </div>
               </div>
 
@@ -128,7 +129,9 @@
                   <p>Fecha de lanzamiento:</p>
                 </div>
                 <div class="info">
-                  <p style="color: #9999;">{{informacion?.fechaLanzamiento}}</p>
+                  <p style="color: #9999">
+                    {{ informacion?.fechaLanzamiento }}
+                  </p>
                 </div>
               </div>
 
@@ -137,50 +140,45 @@
                   <p>Género:</p>
                 </div>
                 <div class="info">
-                  <p class="text-white">{{informacion?.genero.join(', ')}}</p>
+                  <p class="text-white">{{ informacion?.genero.join(", ") }}</p>
                 </div>
               </div>
-
             </div>
           </div>
         </div>
-
       </div>
 
       <div id="contentAll"
-        class="container-fluid my-2  panel-container d-flex flex-column  flex-sm-row align-items-center gap-5">
-        <div class="visuales ">
-
-          <div class="text text-white fs-2 my-1 my-md-4" [hidden]="true">Visuales</div>
+        class="container-fluid my-2 panel-container d-flex flex-column flex-sm-row align-items-center gap-5">
+        <div class="visuales">
+          <div class="text text-white fs-2 my-1 my-md-4" [hidden]="true">
+            Visuales
+          </div>
           <video [hidden]="true" loop muted playsinline controls preload="none">
-            <source [src]="juego?.video">
+            <source [src]="juego?.video" />
           </video>
         </div>
-
       </div>
 
       <div id="contentAll" class="container-fluid my-4 panel-container d-flex flex-column align-items-start gap-5">
-
         <h2 class="text-white text-start">Configuración</h2>
 
         <div
           class="content-especificaciones w-100 d-flex flex-column flex-sm-row align-items-center justify-content-between gap-4">
-
           @if (informacion?.configuracion?.minima.sistema != null) {
 
           <div class="col-12 col-md-6 especificaciones">
-            <div class="container ">
-              <div class="textoPrincipal text-white fs-5">
-                mínima*
-              </div>
-              <div class="contenido ">
-
+            <div class="container">
+              <div class="textoPrincipal text-white fs-5">mínima*</div>
+              <div class="contenido">
                 <div class="infoad d-flex justify-content-between">
                   <div class="info w-50">
                     <p>Sistema Operativo:</p>
                   </div>
                   <div class="info w-100">
-                    <p class="text-white text-start">{{informacion?.configuracion?.minima?.sistema}}</p>
+                    <p class="text-white text-start">
+                      {{ informacion?.configuracion?.minima?.sistema }}
+                    </p>
                   </div>
                 </div>
 
@@ -189,7 +187,9 @@
                     <p>Procesador:</p>
                   </div>
                   <div class="info w-100">
-                    <p class="text-white text-start">{{informacion?.configuracion.minima.procesador}}</p>
+                    <p class="text-white text-start">
+                      {{ informacion?.configuracion.minima.procesador }}
+                    </p>
                   </div>
                 </div>
 
@@ -198,7 +198,9 @@
                     <p>Memoria:</p>
                   </div>
                   <div class="info w-100">
-                    <p class="text-white text-start">{{informacion?.configuracion.minima.memoria}}</p>
+                    <p class="text-white text-start">
+                      {{ informacion?.configuracion.minima.memoria }}
+                    </p>
                   </div>
                 </div>
 
@@ -207,7 +209,9 @@
                     <p>Gráficos:</p>
                   </div>
                   <div class="info w-100">
-                    <p class="text-white text-start">{{informacion?.configuracion.minima.graficos}}</p>
+                    <p class="text-white text-start">
+                      {{ informacion?.configuracion.minima.graficos }}
+                    </p>
                   </div>
                 </div>
 
@@ -216,31 +220,29 @@
                     <p>Almacenamiento:</p>
                   </div>
                   <div class="info w-100">
-                    <p class="text-white text-start">{{informacion?.configuracion.minima.almacenamiento}}</p>
+                    <p class="text-white text-start">
+                      {{ informacion?.configuracion.minima.almacenamiento }}
+                    </p>
                   </div>
                 </div>
-
               </div>
             </div>
           </div>
 
-          }
-
-          @if (informacion?.configuracion?.recomendada.sistema != null) {
+          } @if (informacion?.configuracion?.recomendada.sistema != null) {
 
           <div class="col-12 col-md-6 especificaciones">
-            <div class="container ">
-              <div class="textoPrincipal text-white fs-5">
-                recomendada*
-              </div>
-              <div class="contenido ">
-
+            <div class="container">
+              <div class="textoPrincipal text-white fs-5">recomendada*</div>
+              <div class="contenido">
                 <div class="infoad d-flex justify-content-between">
                   <div class="info w-50">
                     <p>Sistema Operativo:</p>
                   </div>
                   <div class="info w-100">
-                    <p class="text-white text-start">{{informacion?.configuracion.recomendada.sistema}}</p>
+                    <p class="text-white text-start">
+                      {{ informacion?.configuracion.recomendada.sistema }}
+                    </p>
                   </div>
                 </div>
 
@@ -249,7 +251,9 @@
                     <p>Procesador:</p>
                   </div>
                   <div class="info w-100">
-                    <p class="text-white text-start">{{informacion?.configuracion.recomendada.procesador}}</p>
+                    <p class="text-white text-start">
+                      {{ informacion?.configuracion.recomendada.procesador }}
+                    </p>
                   </div>
                 </div>
 
@@ -258,7 +262,9 @@
                     <p>Memoria:</p>
                   </div>
                   <div class="info w-100">
-                    <p class="text-white text-start">{{informacion?.configuracion.recomendada.memoria}}</p>
+                    <p class="text-white text-start">
+                      {{ informacion?.configuracion.recomendada.memoria }}
+                    </p>
                   </div>
                 </div>
 
@@ -267,7 +273,9 @@
                     <p>Gráficos:</p>
                   </div>
                   <div class="info w-100">
-                    <p class="text-white text-start">{{informacion?.configuracion.recomendada.graficos}}</p>
+                    <p class="text-white text-start">
+                      {{ informacion?.configuracion.recomendada.graficos }}
+                    </p>
                   </div>
                 </div>
 
@@ -276,35 +284,24 @@
                     <p>Almacenamiento:</p>
                   </div>
                   <div class="info w-100">
-                    <p class="text-white text-start">{{informacion?.configuracion.recomendada.almacenamiento}}</p>
+                    <p class="text-white text-start">
+                      {{
+                      informacion?.configuracion.recomendada.almacenamiento
+                      }}
+                    </p>
                   </div>
                 </div>
-
-
               </div>
             </div>
           </div>
 
           }
-
         </div>
-
       </div>
-
     </div>
 
     <app-reviews [juegoId]="juegoId"></app-reviews>
-
   </div>
-
-
 </div>
 
-
-
-
-  }
-}
-
-
-
+} }

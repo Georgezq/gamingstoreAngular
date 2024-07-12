@@ -1,0 +1,146 @@
+<div class="container main-panel d-flex flex-column ">
+  <div class="avatar-panel d-flex flex-row my-5 gap-4 align-items-center justify-content-center ">
+    <div class="user-avatar">
+      <a><img id="userLogged" class="rounded-circle" style="width: 100px; height: 100px;" [src]="photoUrlVisitante" appDefaultProfileImage alt=""></a>
+    </div>
+
+    <div class="user-links my-2">
+      <div class="title text-white fs-4 ">
+        {{displayNameVisitante}}
+      </div>
+
+      <div class="date text-white fs-6 " >
+        <p style="color: #999; font-size: 14px;">Miembro desde: {{fechaVisitante}}</p>
+      </div>
+
+      <div class="details my-2">
+        <div class="user-social-links d-flex gap-2">
+
+          @if(discordVisitante || steamVisitante || youtubeVisitante ){
+            <ng-container *ngIf="discordVisitante">
+              <a [href]="discordVisitante" target="_blank" class="rounded-circle p-2"
+              style="background-color: rgba(88, 101, 242, .2);">
+              <svg fill="#5865f2" xmlns="http://www.w3.org/2000/svg" width="25" height="25" class="bi bi-discord"
+                viewBox="0 0 16 18">
+                <path
+                  d="M13.545 2.907a13.2 13.2 0 0 0-3.257-1.011.05.05 0 0 0-.052.025c-.141.25-.297.577-.406.833a12.2 12.2 0 0 0-3.658 0 8 8 0 0 0-.412-.833.05.05 0 0 0-.052-.025c-1.125.194-2.22.534-3.257 1.011a.04.04 0 0 0-.021.018C.356 6.024-.213 9.047.066 12.032q.003.022.021.037a13.3 13.3 0 0 0 3.995 2.02.05.05 0 0 0 .056-.019q.463-.63.818-1.329a.05.05 0 0 0-.01-.059l-.018-.011a9 9 0 0 1-1.248-.595.05.05 0 0 1-.02-.066l.015-.019q.127-.095.248-.195a.05.05 0 0 1 .051-.007c2.619 1.196 5.454 1.196 8.041 0a.05.05 0 0 1 .053.007q.121.1.248.195a.05.05 0 0 1-.004.085 8 8 0 0 1-1.249.594.05.05 0 0 0-.03.03.05.05 0 0 0 .003.041c.24.465.515.909.817 1.329a.05.05 0 0 0 .056.019 13.2 13.2 0 0 0 4.001-2.02.05.05 0 0 0 .021-.037c.334-3.451-.559-6.449-2.366-9.106a.03.03 0 0 0-.02-.019m-8.198 7.307c-.789 0-1.438-.724-1.438-1.612s.637-1.613 1.438-1.613c.807 0 1.45.73 1.438 1.613 0 .888-.637 1.612-1.438 1.612m5.316 0c-.788 0-1.438-.724-1.438-1.612s.637-1.613 1.438-1.613c.807 0 1.451.73 1.438 1.613 0 .888-.631 1.612-1.438 1.612" />
+              </svg>
+            </a>
+            </ng-container>
+
+            <ng-container *ngIf="steamVisitante">
+              <a [href]="steamVisitante" target="_blank" class="rounded-circle p-2"
+              style="background-color: rgba(35, 141, 245, .2);">
+              <svg fill="#238df5" xmlns="http://www.w3.org/2000/svg" width="25" height="25" class="bi bi-steam"
+                viewBox="0 0 16 18">
+                <path
+                  d="M.329 10.333A8.01 8.01 0 0 0 7.99 16C12.414 16 16 12.418 16 8s-3.586-8-8.009-8A8.006 8.006 0 0 0 0 7.468l.003.006 4.304 1.769A2.2 2.2 0 0 1 5.62 8.88l1.96-2.844-.001-.04a3.046 3.046 0 0 1 3.042-3.043 3.046 3.046 0 0 1 3.042 3.043 3.047 3.047 0 0 1-3.111 3.044l-2.804 2a2.223 2.223 0 0 1-3.075 2.11 2.22 2.22 0 0 1-1.312-1.568L.33 10.333Z" />
+                <path
+                  d="M4.868 12.683a1.715 1.715 0 0 0 1.318-3.165 1.7 1.7 0 0 0-1.263-.02l1.023.424a1.261 1.261 0 1 1-.97 2.33l-.99-.41a1.7 1.7 0 0 0 .882.84Zm3.726-6.687a2.03 2.03 0 0 0 2.027 2.029 2.03 2.03 0 0 0 2.027-2.029 2.03 2.03 0 0 0-2.027-2.027 2.03 2.03 0 0 0-2.027 2.027m2.03-1.527a1.524 1.524 0 1 1-.002 3.048 1.524 1.524 0 0 1 .002-3.048" />
+              </svg>
+            </a>
+            </ng-container>
+
+            <ng-container *ngIf="youtubeVisitante">
+              <a [href]="youtubeVisitante" target="_blank" class="rounded-circle p-2"
+              style="background-color: rgba(226, 43, 38, .2);">
+              <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="#e22b26" class="bi bi-youtube"
+                viewBox="0 0 16 18">
+                <path
+                  d="M8.051 1.999h.089c.822.003 4.987.033 6.11.335a2.01 2.01 0 0 1 1.415 1.42c.101.38.172.883.22 1.402l.01.104.022.26.008.104c.065.914.073 1.77.074 1.957v.075c-.001.194-.01 1.108-.082 2.06l-.008.105-.009.104c-.05.572-.124 1.14-.235 1.558a2.01 2.01 0 0 1-1.415 1.42c-1.16.312-5.569.334-6.18.335h-.142c-.309 0-1.587-.006-2.927-.052l-.17-.006-.087-.004-.171-.007-.171-.007c-1.11-.049-2.167-.128-2.654-.26a2.01 2.01 0 0 1-1.415-1.419c-.111-.417-.185-.986-.235-1.558L.09 9.82l-.008-.104A31 31 0 0 1 0 7.68v-.123c.002-.215.01-.958.064-1.778l.007-.103.003-.052.008-.104.022-.26.01-.104c.048-.519.119-1.023.22-1.402a2.01 2.01 0 0 1 1.415-1.42c.487-.13 1.544-.21 2.654-.26l.17-.007.172-.006.086-.003.171-.007A100 100 0 0 1 7.858 2zM6.4 5.209v4.818l4.157-2.408z" />
+              </svg>
+            </a>
+            </ng-container>
+          }
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="profile-container">
+
+    <div class="content-reviews text-white my-4">
+      <span class="text-start fs-4">{{reviews}} Opiniones publicadas</span>
+    </div>
+    <div class="content-review text-white">
+      <div class="item-review my-4 d-flex flex-wrap  align-items-center justify-content-center gap-5">
+      @for (item of reviewsList; track $index) {
+          <div class="card rounded-4 text-white " style="width: 22rem; max-height: 500; background-color: #323232;">
+            <div class="item" *ngIf="reviewedGames[$index]?.id">
+              <a [routerLink]="['/comprar',reviewedGames[$index]?.id]" class="cover position-relative d-inline-block overflow-hidden object-fit-cover" (mouseenter)="playVideo($event)" (mouseleave)="pauseVideo($event)">
+                  <picture>
+                          <img *ngIf="reviewedGames[$index]?.imagen"
+                          [src]="reviewedGames[$index].imagen" appNotImage
+                          (load)="lazyLoadImage($event)" />
+                  </picture>
+                  <video *ngIf="reviewedGames[$index]?.video" preload="none" loop muted playsinline style="width: 350px; max-height: 200px; object-fit: cover">
+                    <source
+                      [src]="reviewedGames[$index].video"
+                      type="video/webm" />
+                  </video>
+              </a>
+          </div>
+          <div class="card-body ">
+            <h5 class="card-title d-flex align-items-center justify-content-center">
+              @if (item.calificacion == true) {
+
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#6dd432"
+                class="bi bi-hand-thumbs-up" viewBox="0 0 16 16">
+                <path
+                  d="M8.864.046C7.908-.193 7.02.53 6.956 1.466c-.072 1.051-.23 2.016-.428 2.59-.125.36-.479 1.013-1.04 1.639-.557.623-1.282 1.178-2.131 1.41C2.685 7.288 2 7.87 2 8.72v4.001c0 .845.682 1.464 1.448 1.545 1.07.114 1.564.415 2.068.723l.048.03c.272.165.578.348.97.484.397.136.861.217 1.466.217h3.5c.937 0 1.599-.477 1.934-1.064a1.86 1.86 0 0 0 .254-.912c0-.152-.023-.312-.077-.464.201-.263.38-.578.488-.901.11-.33.172-.762.004-1.149.069-.13.12-.269.159-.403.077-.27.113-.568.113-.857 0-.288-.036-.585-.113-.856a2 2 0 0 0-.138-.362 1.9 1.9 0 0 0 .234-1.734c-.206-.592-.682-1.1-1.2-1.272-.847-.282-1.803-.276-2.516-.211a10 10 0 0 0-.443.05 9.4 9.4 0 0 0-.062-4.509A1.38 1.38 0 0 0 9.125.111zM11.5 14.721H8c-.51 0-.863-.069-1.14-.164-.281-.097-.506-.228-.776-.393l-.04-.024c-.555-.339-1.198-.731-2.49-.868-.333-.036-.554-.29-.554-.55V8.72c0-.254.226-.543.62-.65 1.095-.3 1.977-.996 2.614-1.708.635-.71 1.064-1.475 1.238-1.978.243-.7.407-1.768.482-2.85.025-.362.36-.594.667-.518l.262.066c.16.04.258.143.288.255a8.34 8.34 0 0 1-.145 4.725.5.5 0 0 0 .595.644l.003-.001.014-.003.058-.014a9 9 0 0 1 1.036-.157c.663-.06 1.457-.054 2.11.164.175.058.45.3.57.65.107.308.087.67-.266 1.022l-.353.353.353.354c.043.043.105.141.154.315.048.167.075.37.075.581 0 .212-.027.414-.075.582-.05.174-.111.272-.154.315l-.353.353.353.354c.047.047.109.177.005.488a2.2 2.2 0 0 1-.505.805l-.353.353.353.354c.006.005.041.05.041.17a.9.9 0 0 1-.121.416c-.165.288-.503.56-1.066.56z" />
+              </svg>
+
+              } @else{
+                  <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#ff0a4e" class="bi bi-hand-thumbs-down" viewBox="0 0 16 16">
+                    <path d="M8.864 15.674c-.956.24-1.843-.484-1.908-1.42-.072-1.05-.23-2.015-.428-2.59-.125-.36-.479-1.012-1.04-1.638-.557-.624-1.282-1.179-2.131-1.41C2.685 8.432 2 7.85 2 7V3c0-.845.682-1.464 1.448-1.546 1.07-.113 1.564-.415 2.068-.723l.048-.029c.272-.166.578-.349.97-.484C6.931.08 7.395 0 8 0h3.5c.937 0 1.599.478 1.934 1.064.164.287.254.607.254.913 0 .152-.023.312-.077.464.201.262.38.577.488.9.11.33.172.762.004 1.15.069.13.12.268.159.403.077.27.113.567.113.856s-.036.586-.113.856c-.035.12-.08.244-.138.363.394.571.418 1.2.234 1.733-.206.592-.682 1.1-1.2 1.272-.847.283-1.803.276-2.516.211a10 10 0 0 1-.443-.05 9.36 9.36 0 0 1-.062 4.51c-.138.508-.55.848-1.012.964zM11.5 1H8c-.51 0-.863.068-1.14.163-.281.097-.506.229-.776.393l-.04.025c-.555.338-1.198.73-2.49.868-.333.035-.554.29-.554.55V7c0 .255.226.543.62.65 1.095.3 1.977.997 2.614 1.709.635.71 1.064 1.475 1.238 1.977.243.7.407 1.768.482 2.85.025.362.36.595.667.518l.262-.065c.16-.04.258-.144.288-.255a8.34 8.34 0 0 0-.145-4.726.5.5 0 0 1 .595-.643h.003l.014.004.058.013a9 9 0 0 0 1.036.157c.663.06 1.457.054 2.11-.163.175-.059.45-.301.57-.651.107-.308.087-.67-.266-1.021L12.793 7l.353-.354c.043-.042.105-.14.154-.315.048-.167.075-.37.075-.581s-.027-.414-.075-.581c-.05-.174-.111-.273-.154-.315l-.353-.354.353-.354c.047-.047.109-.176.005-.488a2.2 2.2 0 0 0-.505-.804l-.353-.354.353-.354c.006-.005.041-.05.041-.17a.9.9 0 0 0-.121-.415C12.4 1.272 12.063 1 11.5 1"/>
+                  </svg>
+              }
+            </h5>
+            <p class="card-text pt-4" style="color: #999999; max-height: 100px; overflow-y: auto;">
+              {{item.comentario}}
+          </p>
+          </div>
+        </div>
+      }
+    </div>
+    </div>
+
+    <div class="content-wishlist text-white my-5">
+      <span class="text-start fs-4">{{deseados}} juegos en la lista de Deseados</span>
+    </div>
+    <div class="container d-flex  d-flex flex-wrap align-items-center justify-content-center gap-4 my-5" id="gamescontent">
+
+      @for (game of wishlistGames ; track game.id) {
+        <div class="item">
+          <a [routerLink]="['/comprar', game.id]" class="cover position-relative d-inline-block overflow-hidden object-fit-cover"
+            (mouseenter)="playVideo($event)" (mouseleave)="pauseVideo($event)">
+            <picture>
+              <img
+                [src]="game.imagen" appNotImage
+                alt="" (load)="lazyLoadImage($event)" />
+            </picture>
+            <video preload="none" loop muted playsinline style="max-width: 350px; max-height: 200px; object-fit: cover">
+              <source
+                [src]="game.video"
+                type="video/webm" />
+            </video>
+          </a>
+
+          <div class="information overflow-hidden text-white d-flex">
+            <div class="text-game">
+              {{ game.nombre }}
+            </div>
+            <div class="price ms-auto">
+              {{ game.precio }}$
+            </div>
+          </div>
+        </div>
+      }
+      </div>
+
+
+  </div>
+
+</div>

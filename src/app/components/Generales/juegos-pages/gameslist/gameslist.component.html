@@ -6,8 +6,7 @@
       (mouseenter)="playVideo($event)" (mouseleave)="pauseVideo($event)">
       <picture>
         <img [style.view-transition-name]="'transition-image-'+game.id"
-          [src]="game.imagen" appNotImage
-          alt="" (load)="lazyLoadImage($event)" />
+          [src]="game.imagen" appNotImage (load)="lazyLoadImage($event)" />
       </picture>
       <video preload="none" loop muted playsinline style="max-width: 350px; max-height: 200px; object-fit: cover">
         <source

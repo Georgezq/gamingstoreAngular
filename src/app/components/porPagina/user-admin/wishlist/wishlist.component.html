@@ -1,29 +1,24 @@
 <div class="container">
   <div class="content">
-
-    <div class="content-wishlist">
-      <span class="fs-4">0 juegos en tu lista de deseos</span>
+    <div class="content-wishlist my-4">
+      <span class="fs-4">{{deseados}} juegos en tu lista de deseos</span>
     </div>
-
-    @if (wishlist.length < 0;) {
+    @if (deseados == 0) {
       <div class="content-message my-4">
-
         <div class="alert-message rounded-3 text-center d-flex align-items-center justify-content-center">
             <span class="mesaage">
               ¡Por ahora no cuentas con ningun juego añadido a tu lista de deseos, visita la página principal para añadir algunos!
             </span>
         </div>
-
       </div>
     } @else {
       <div class="container d-flex  d-flex flex-wrap align-items-center justify-content-center gap-3" id="gamescontent">
-
-        @for (game of (juegosDetails$ | async ) ; track game.id) {
+        @for (game of wishlistGames ; track game.id) {
           <div class="item">
             <a [routerLink]="['/comprar', game.id]" class="cover position-relative d-inline-block overflow-hidden object-fit-cover"
               (mouseenter)="playVideo($event)" (mouseleave)="pauseVideo($event)">
               <picture>
-                <img [style.view-transition-name]="'transition-image-'+game.id"
+                <img
                   [src]="game.imagen" appNotImage
                   alt="" (load)="lazyLoadImage($event)" />
               </picture>
@@ -35,7 +30,7 @@
             </a>
 
             <div class="information overflow-hidden text-white d-flex">
-              <div class="text-game" >
+              <div class="text-game">
                 {{ game.nombre }}
               </div>
               <div class="price ms-auto">
@@ -45,14 +40,6 @@
           </div>
         }
         </div>
-
-
     }
-
-
-
-
-
   </div>
 </div>
-

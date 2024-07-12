@@ -84,7 +84,7 @@ i{
 .item-cat {
   background-size: cover;
   background-position: center;
-  width: 375px;
+  width: 350px;
   height: 225px;
   border-radius: 12px;
   margin: 10px 0px;
@@ -154,4 +154,15 @@ i{
 .cover:hover video {
   display: block;
   transform: scale(1.1);
+}
+
+app-portada{
+  position: relative;
+  bottom: 130px;
+}
+
+@media screen and (max-width: 552px) {
+  app-portada{
+    bottom: 0px;
+  }
 }

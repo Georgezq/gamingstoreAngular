@@ -1,0 +1,57 @@
+<div class="container">
+  <div class="content-news text-white">
+
+    @for(noticia of noticias; track $index) {
+      <div class="content-title my-5">
+        <h2 class="fw-bold">{{noticia.titulo}}</h2>
+      </div>
+
+      <div class="content-info-new d-flex flex-row gap-3">
+        <div class="date">
+          <span class="fs-5">Publicado el {{noticia.fecha_creacion | date:'dd/MM/yyyy'}} </span>
+        </div>
+        <div class="author">
+          <p class="fs-5" style="color: #b7b7b7;">Por: <span class="fs-5 text-white">{{noticia.autor}}</span> </p>
+        </div>
+      </div>
+
+      <div class="content-image">
+        <img [src]="noticia.imagen" class="img-fluid w-100">
+      </div>
+
+      <div class="content-text my-4">
+        <p>{{noticia.contenido}}</p>
+      </div>
+
+      <div class="content-subtitle my-4">
+        <p class="fs-4">{{noticia.subtitulo}}</p>
+      </div>
+
+      <div class="content-textsub my-4">
+        <p>{{noticia.contenido2}}</p>
+      </div>
+
+
+
+      <div class="content-fuente my-4">
+        <p class="fs-5" style="color: #b7b7b7;">Fuente: <a [href]="noticia.fuente" target="_blank">{{noticia.fuente}}</a></p>
+      </div>
+
+      <div class="content-etiquetas my-4">
+          @for (etiquetas of noticia.Etiquetas; track $index) {
+          <ul class="navegacion">
+            <li>{{etiquetas}}</li>
+          </ul>
+        }
+        </div>
+
+    }
+
+  </div>
+</div>
+
+<div class="container">
+  <div class="content-comments-news">
+    <h2 class="fs-4 text-white my-5">{{0}} Comentarios</h2>
+  </div>
+</div>

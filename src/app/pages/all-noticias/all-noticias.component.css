@@ -1,0 +1,43 @@
+*{
+  font-family: 'barlow', arial, sans-serif;
+}
+
+span{
+  color: #ffffff80;
+}
+
+.content-text p{
+  color: #b7b7b7;
+  line-height: 40px;
+  font-weight: 400;
+  font-size: 22px;
+}
+
+.content-textsub p{
+  color: #b7b7b7;
+  line-height: 40px;
+  font-weight: 400;
+  font-size: 22px;
+}
+
+.etiquetas{
+  background-color: #9999;
+  padding: 10px 5px;
+}
+
+ul{
+  list-style: none;
+  display: inline;
+  padding-left: 20px;
+}
+
+ul.navegacion li{
+  display: inline;
+  background-color: #9999;
+  padding: 10px 15px;
+  border-radius: 10px;
+}
+
+a:hover{
+  color: #ff6600;
+}

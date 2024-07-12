@@ -30,7 +30,7 @@
           </div>
 
           <div class="wishlist d-flex flex-column align-items-center">
-            <span class="fs-4">0</span>
+            <span class="fs-4">{{deseados}}</span>
             <span class="fs-6">Wishlist</span>
           </div>
 
@@ -62,6 +62,27 @@
         <div class="separator"></div>
 
         <div class="content-review">
+          @if (lastAddedGame) {
+            <div class="item">
+              <a [routerLink]="['/comprar', lastAddedGame.id]" class="cover position-relative d-inline-block overflow-hidden object-fit-cover">
+                <picture>
+                  <img *ngIf="lastAddedGame.imagen"
+                    [src]="lastAddedGame.imagen" appNotImage
+                    alt="" />
+                </picture>
+
+              </a>
+
+              <div class="information overflow-hidden text-white d-flex">
+                <div class="text-game">
+                  {{ lastAddedGame.nombre }}
+                </div>
+                <div class="price ms-auto">
+                  {{ lastAddedGame.precio }}$
+                </div>
+              </div>
+            </div>
+          }
 
         </div>
       </div>

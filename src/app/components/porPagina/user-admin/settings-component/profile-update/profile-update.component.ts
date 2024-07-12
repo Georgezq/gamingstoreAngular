@@ -1,13 +1,14 @@
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Component, OnInit, inject } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { AuthService } from '../../../../../services/auth/auth.service';
+import { AuthService } from '../../../../../services/firebase/auth/auth.service';
 import { Usuario } from '../../../../../interfaces/usuarioInterface';
+import { NgFor } from '@angular/common';
 
 @Component({
   selector: 'app-profile-update',
   standalone: true,
-  imports: [ReactiveFormsModule, HttpClientModule],
+  imports: [ReactiveFormsModule, HttpClientModule, NgFor],
   templateUrl: './profile-update.component.html',
   styleUrl: './profile-update.component.css',
   providers: [HttpClient, AuthService]
@@ -20,6 +21,7 @@ export class ProfileUpdateComponent implements OnInit {
   discord: string;
   steam: string;
   youtube: string;
+  
 
   auth$ = inject(AuthService);
 
@@ -57,7 +59,6 @@ export class ProfileUpdateComponent implements OnInit {
         this.youtube = res.redesSociales.youtube;
         if(parsedData.UserName == null) {
           this.userName = correo.split('@')[0];
-          console.log(this.userName)
 
         } else {
           this.userName = res.displayName;
@@ -99,7 +100,7 @@ export class ProfileUpdateComponent implements OnInit {
 
     this.auth$.updateUserData(this.userId, userData).subscribe(
       (response) => {
-       // console.log('Datos actualizados correctamente:', response);
+        this.userName = '';
       },
       (error) => {
       //  console.error('Error al actualizar datos:', error);

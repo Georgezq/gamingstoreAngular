@@ -1,13 +1,14 @@
 import { AsyncPipe, NgFor, NgOptimizedImage, NgStyle } from '@angular/common';
 import { Component, OnInit, inject } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
-import { JuegosService } from '../../services/games/juegos.service';
+import { JuegosService } from '../../services/firebase/games/juegos.service';
 import { GameslistComponent } from '../../components/Generales/juegos-pages/gameslist/gameslist.component';
+import { PortadaComponent } from '../../components/Generales/portada/portada.component';
 
 @Component({
   selector: 'app-inicio',
   standalone: true,
-  imports: [RouterLink, NgOptimizedImage, AsyncPipe, NgFor, NgStyle, GameslistComponent],
+  imports: [RouterLink, NgOptimizedImage, AsyncPipe, NgFor, NgStyle, GameslistComponent, PortadaComponent],
   templateUrl: './inicio.component.html',
   styleUrl: './inicio.component.css'
 })

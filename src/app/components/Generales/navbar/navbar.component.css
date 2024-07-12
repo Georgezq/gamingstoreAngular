@@ -16,6 +16,7 @@
 .user-menu-container {
   position: relative;
   display: inline-block;
+  z-index: 100;
 }
 
 .user-menu-btn {
@@ -34,7 +35,7 @@
   right: 0; /* Aligns the dropdown to the right */
   border-radius: 10px;
   width: 200px;
-  z-index: 1000;
+  z-index: 999;
 
 
   backdrop-filter: blur(60px) saturate(100%);
@@ -119,4 +120,19 @@ input:checked + .slider:before {
 #badge{
   background-color: #ff5400;
 }
+
+.mat-mdc-slide-toggle.mat-accent{
+  --mdc-switch-selected-focus-state-layer-color: #ff5400;
+    --mdc-switch-selected-handle-color: #ff5400;
+    --mdc-switch-selected-hover-state-layer-color: #ff5400;
+    --mdc-switch-selected-pressed-state-layer-color: #ff5400;
+    --mdc-switch-selected-focus-handle-color: #ff5400;
+    --mdc-switch-selected-hover-handle-color: #ff5400;
+    --mdc-switch-selected-pressed-handle-color: #ff5400;
+    --mdc-switch-selected-focus-track-color: #ff5400;
+    --mdc-switch-selected-hover-track-color: #ff5400;
+    --mdc-switch-selected-pressed-track-color: #ff5400;
+    --mdc-switch-selected-track-color: #ff5400;
+}
+
 

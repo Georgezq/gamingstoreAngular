@@ -10,3 +10,27 @@
 .mesaage{
   color: #00abff;
 }
+
+.cover picture, .cover video {
+  transition: transform 1s ease;
+}
+
+.cover video {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.cover:hover video {
+  display: block;
+  transform: scale(1.1);
+}
+
+.item img{
+  width: 350px;
+  max-height: 200px;
+  border-radius: 12px
+}

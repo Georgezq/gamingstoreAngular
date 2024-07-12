@@ -2,7 +2,7 @@ import { NgIf } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
-import { AuthService } from '../../services/auth/auth.service';
+import { AuthService } from '../../services/firebase/auth/auth.service';
 import { Router } from '@angular/router';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 
@@ -18,10 +18,8 @@ export class AuthComponent {
 
   showLogin = true;
   isLogged = false;
- // providerGoogle = new GoogleAuthProvider();
 
-
- formReg: FormGroup;
+  formReg: FormGroup;
 
   toggleForm() {
     this.showLogin = !this.showLogin;
@@ -32,67 +30,51 @@ export class AuthComponent {
       email: new FormControl(),
       password: new FormControl(),
     })
-
   }
 
   signInWithEmailAndPassword(): void {
     this.auth.login(this.formReg.value)
-    .then((res) => {
-      //this.router.navigate(['/']);
-    })
+    .then(async (response) => {
+      if(response !== null){
+        await this.router.navigate(['/']);
+      }    })
     .catch(error => console.log(error))
   }
 
   registerWithEmailAndPassword(): void {
     this.auth.register(this.formReg.value)
-    .then((response) => {
+    .then(async (response) => {
       if(response !== null){
-        this.router.navigate(['/']);
+        await this.router.navigate(['/']);
       }
     })
     .catch(error => console.log(error))
   }
 
-
-
-
   loginGoogle(): void {
     this.auth.loginWithGoogle()
-      .then((result) => {
-        // La autenticación fue exitosa, aquí puedes manejar la respuesta
-        console.log(result);
-        // Redirigir a la página de inicio u otra acción necesaria
+      .then(async (response) => {
+        if(response !== null){
+          await this.router.navigate(['/']);
+        }
       })
-      .catch((error) => {
-        // Ocurrió un error durante la autenticación
-        console.error('Error durante el inicio de sesión con Google', error);
-      });
+      .catch(error => console.log(error))
   }
 
   loginFacebook(): void {
     this.auth.loginWithFacebook()
       .then((result) => {
-        // La autenticación fue exitosa, aquí puedes manejar la respuesta
         console.log(result);
-        // Redirigir a la página de inicio u otra acción necesaria
       })
-      .catch((error) => {
-        // Ocurrió un error durante la autenticación
-        console.error('Error durante el inicio de sesión con Facebook', error);
-      });
+      .catch(error => console.log(error))
   }
 
   loginGithub(): void {
     this.auth.loginWithGitHub()
       .then((result) => {
-        // La autenticación fue exitosa, aquí puedes manejar la respuesta
         console.log(result);
-        // Redirigir a la página de inicio u otra acción necesaria
       })
-      .catch((error) => {
-        // Ocurrió un error durante la autenticación
-        console.error('Error durante el inicio de sesión con Facebook', error);
-      });
+      .catch(error => console.log(error))
   }
 
 }

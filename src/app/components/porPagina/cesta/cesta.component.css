@@ -1,0 +1,31 @@
+.content-games{
+  background-color: #323232;
+  border-radius: 10px;
+}
+
+.game img{
+  width: 200px;
+  border-radius: 12px;
+}
+
+.content-removeItem button{
+  background-color: transparent;
+  border: none;
+}
+
+.button-juegos button{
+  background-color: transparent;
+  border: 1px solid white;
+  border-radius: 10px;
+}
+
+.content-pago{
+  background-color: #101010;
+  border-radius: 10px;
+}
+
+.paybtn{
+    background: linear-gradient(10deg,#ff8000,transparent) #ff4020;
+    border-radius: 8px;
+    border: none;
+}

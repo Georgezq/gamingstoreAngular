@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
+import { ToggleServiceService } from '../../services/toggle-service.service';
 
 @Component({
   selector: 'app-comunidad',
@@ -7,15 +8,28 @@ import { Component } from '@angular/core';
   templateUrl: './comunidad.component.html',
   styleUrl: './comunidad.component.css'
 })
-export class ComunidadComponent {
+export class ComunidadComponent implements OnInit{
+
+  _toggleSerive = inject(ToggleServiceService);
+  verPreview: boolean = true; 
+
+  ngOnInit(): void {
+      this._toggleSerive.currentState.subscribe(state => {
+      this.verPreview = state;
+    });   
+  }
 
   playVideo(event: MouseEvent): void {
-    const video = (event.currentTarget as HTMLElement).querySelector('video') as HTMLVideoElement;
-    if (video) {
-      video.muted = true; // Asegura que el video esté silenciado
-      video.play().catch((error) => {
-        console.error('Error al reproducir el video:', error);
-      });
+    if(this.verPreview == true) {
+      const video = (event.currentTarget as HTMLElement).querySelector('video') as HTMLVideoElement;
+      if (video) {
+        video.muted = true; // Asegura que el video esté silenciado
+        video.play().catch((error) => {
+          console.error('Error al reproducir el video:', error);
+        });
+      }
+    } else {
+      return;
     }
   }
 

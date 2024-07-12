@@ -2,8 +2,6 @@
   background-color: #101010;
 }
 
-
-
 .separator{
   height: 1px;
   margin: .5rem 0;
@@ -13,4 +11,10 @@
 
 .wishlist-widget{
   background-color: #323232;
+}
+
+.item img{
+  width: 300px;
+  max-height: 150px;
+  border-radius: 12px
 }

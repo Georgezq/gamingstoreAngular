@@ -56,3 +56,8 @@ i {
 .selected-dislike {
   color: #dc3545;
 }
+
+button{
+  background-color: transparent;
+  border: none;
+}

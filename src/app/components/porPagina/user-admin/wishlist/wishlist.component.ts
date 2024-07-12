@@ -1,11 +1,13 @@
 import { Component, OnInit, inject } from '@angular/core';
-import { DeseadosService } from '../../../../services/wishlist-admin/deseados.service';
-import { AuthService } from '../../../../services/auth/auth.service';
+import { DeseadosService } from '../../../../services/mongodb/wishlist-admin/deseados.service';
+import { AuthService } from '../../../../services/firebase/auth/auth.service';
 import { Observable, catchError, forkJoin, map, of, switchMap, tap } from 'rxjs';
-import { JuegosService } from '../../../../services/games/juegos.service';
+import { JuegosService } from '../../../../services/firebase/games/juegos.service';
 import { Juegos } from '../../../../interfaces/juegosInterface';
 import { AsyncPipe, NgFor, NgIf } from '@angular/common';
 import { RouterLink } from '@angular/router';
+import { ReviewsService } from '../../../../services/mongodb/reviews-admin/reviews.service';
+import { ToggleServiceService } from '../../../../services/toggle-service.service';
 
 @Component({
   selector: 'app-wishlist',
@@ -18,16 +20,33 @@ export class WishlistComponent implements OnInit {
 
   userId: string;
   gameId: string;
+  allGamesID: any;
   wishlist: string[] = []; // Cambio el tipo a string[]
+  deseados: any;
   juegosDetails$: Observable<Juegos[]>; // Observable de array de Juegos
+  loading = true; // Bandera para controlar el estado de carga
+  verPreview: boolean = true; 
 
   auth$ = inject(AuthService);
   wishlist$ = inject(DeseadosService);
-  games$ = inject(JuegosService);
+  juegos$ = inject(JuegosService);
+  reviews$ = inject(ReviewsService);
+  _toggleSerive = inject(ToggleServiceService);
+
+
+
+  wishlistList: any[] = [];
+  wishlistGames: any[] = [];
+  wishlistGameIds: any[] = [];
 
   ngOnInit(): void {
-    this.getIdUser()
-    this.getMyWishlist();
+    this.getIdUser();
+    this.getWishlistCount();
+    this.getGamesInWishList();
+
+    this._toggleSerive.currentState.subscribe(state => {
+      this.verPreview = state;
+    }); 
   }
 
   getIdUser(): void {
@@ -35,57 +54,55 @@ export class WishlistComponent implements OnInit {
     if (storedData) {
       const parsedData = JSON.parse(storedData);
       this.userId = parsedData.responses.id;
-      this.getMyWishlist();
     }
   }
 
-  getMyWishlist(): void {
-    console.log('Getting wishlist for user:', this.userId);
-    this.juegosDetails$ = this.wishlist$.getWishListByUser(this.userId).pipe(
-      tap(wishlistItems => console.log('Wishlist items:', wishlistItems)),
-      switchMap(wishlistItems => {
-        this.wishlist = wishlistItems.map(item => item.id_juego);
-        console.log('Game IDs in wishlist:', this.wishlist);
-        return this.obtenerDetallesDeJuegos();
-      }),
-      catchError(error => {
-        console.error('Error al obtener la lista de deseados:', error);
-        return of([]);
-      })
-    );
-
-    // Suscríbete aquí para asegurarte de que se ejecute
-    this.juegosDetails$.subscribe(
-      juegos => console.log('Juegos details:', juegos),
-      error => console.error('Error in juegosDetails$:', error)
+  getGamesInWishList(): void {
+    this.wishlist$.getWishListByUser(this.userId).subscribe(
+      (response) => {
+        this.wishlistGameIds = response;
+        this.wishlistGameIds.forEach(id => {
+          this.juegos$.obtenerJuegoPorId(id).subscribe(
+            (juego) => {
+              this.wishlistGames.push(juego);
+            },
+            (error) => {
+              console.error('Error al obtener la información del juego:', error);
+            }
+          );
+        });
+      },
+      () => {
+      }
     );
   }
 
-  obtenerDetallesDeJuegos(): Observable<Juegos[]> {
-    if (this.wishlist.length === 0) {
-      return of([]);
-    }
-    const requests = this.wishlist.map(juegoId =>
-      this.games$.obtenerJuegoPorId(juegoId).pipe(
-        catchError(error => {
-          console.error(`Error al obtener detalles del juego ${juegoId}:`, error);
-          return of(null);
-        })
-      )
-    );
-    return forkJoin(requests).pipe(
-      map(juegos => juegos.filter(juego => juego !== null)),
-      tap(juegos => console.log('Detalles de juegos:', juegos))
+  getWishlistCount(): void {
+
+    this.wishlist$.wishlistCount(this.userId).subscribe(
+      (response:any) => {
+        this.deseados = response.wishlistCount;
+      },
+      (error) => {
+        console.error('Error al obtener el número de reviews:', error);
+      }
     );
   }
+
+
+  //Para mostrar los videos de los juegos
 
   playVideo(event: MouseEvent): void {
-    const video = (event.currentTarget as HTMLElement).querySelector('video') as HTMLVideoElement;
-    if (video) {
-      video.muted = true; // Asegura que el video esté silenciado
-      video.play().catch((error) => {
-        console.error('Error al reproducir el video:', error);
-      });
+    if(this.verPreview == true){
+      const video = (event.currentTarget as HTMLElement).querySelector('video') as HTMLVideoElement;
+      if (video) {
+        video.muted = true; // Asegura que el video esté silenciado
+        video.play().catch((error) => {
+          console.error('Error al reproducir el video:', error);
+        });
+      }
+    } else {
+      return;
     }
   }
 

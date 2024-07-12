@@ -2,8 +2,8 @@ import { Injectable, inject } from '@angular/core';
 import { Firestore, collectionData, doc, docData } from '@angular/fire/firestore';
 import { DocumentData, DocumentReference, addDoc, collection, getDocs, query, where } from 'firebase/firestore';
 import { Observable, map } from 'rxjs';
-import { Juegos } from '../../interfaces/juegosInterface';
-import { Informacion } from '../../interfaces/informacionInterface';
+import { Juegos } from '../../../interfaces/juegosInterface';
+import { Informacion } from '../../../interfaces/informacionInterface';
 
 const PATH = 'juegos'
 
