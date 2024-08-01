@@ -7,6 +7,7 @@ import { JuegosService } from '../../../../services/firebase/games/juegos.servic
 import { RouterLink } from '@angular/router';
 import { Juegos } from '../../../../interfaces/juegosInterface';
 import { NgIf } from '@angular/common';
+import { CarritoService } from '../../../../services/mongodb/compras-admin/carrito.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -22,6 +23,7 @@ export class DashboardComponent implements OnInit{
   auth$ = inject(ReviewsService);
   wishlist$ = inject(DeseadosService);
   juegos$ = inject(JuegosService);
+  comprados$ = inject(CarritoService);
 
 
   reviewsList: any[] = [];
@@ -38,6 +40,7 @@ export class DashboardComponent implements OnInit{
   deseados: string;
   juegos: string;
   idUser: any;
+  comprados: any;
 
   ngOnInit(): void {
     const storedData = localStorage.getItem('whentheuserislogged');
@@ -52,6 +55,7 @@ export class DashboardComponent implements OnInit{
     this.getWishlistCount();
     this.getGamesInWishList();
     this.getWishlistForTheDate();
+    this.getBuysCount();
   }
 
 
@@ -59,6 +63,17 @@ export class DashboardComponent implements OnInit{
     this.auth$.countReviewsByUser(this.idUser).subscribe(
       (response) => {
         this.reviews = response.reviewCount;
+      },
+      (error) => {
+        console.error('Error al obtener el número de reviews:', error);
+      }
+    );
+  }
+
+  getBuysCount(): void {
+    this.comprados$.obtenerCountComprados(this.idUser).subscribe(
+      (response) => {
+        this.comprados = response.carritoCount;
       },
       (error) => {
         console.error('Error al obtener el número de reviews:', error);
@@ -95,7 +110,7 @@ export class DashboardComponent implements OnInit{
         });
       },
       (error) => {
-        console.error('Error al obtener la lista de deseos:', error);
+        throw(error)
       }
     );
   }
@@ -121,7 +136,7 @@ export class DashboardComponent implements OnInit{
         }
       },
       (error) => {
-        console.error('Error al obtener la lista de deseos:', error);
+       throw(error)
       }
     );
   }

@@ -1,22 +1,23 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { ToggleServiceService } from '../../services/toggle-service.service';
+import { ViewallReviewsComponent } from '../../components/Generales/viewall-reviews/viewall-reviews.component';
 
 @Component({
   selector: 'app-comunidad',
   standalone: true,
-  imports: [],
+  imports: [ViewallReviewsComponent],
   templateUrl: './comunidad.component.html',
   styleUrl: './comunidad.component.css'
 })
 export class ComunidadComponent implements OnInit{
 
   _toggleSerive = inject(ToggleServiceService);
-  verPreview: boolean = true; 
+  verPreview: boolean = true;
 
   ngOnInit(): void {
       this._toggleSerive.currentState.subscribe(state => {
       this.verPreview = state;
-    });   
+    });
   }
 
   playVideo(event: MouseEvent): void {

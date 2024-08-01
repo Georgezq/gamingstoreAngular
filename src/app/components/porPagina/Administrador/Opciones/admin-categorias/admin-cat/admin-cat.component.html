@@ -1,0 +1,42 @@
+<div class="container ">
+  <div class="row d-flex align-items-center justify-content-center">
+    <!-- Formulario de Juegos -->
+    <div class="col-md-6 mb-4">
+      <div class="card bg-dark text-white border-light">
+        <div class="card-header">
+          <h4>Agregar Juego</h4>
+        </div>
+        <div class="card-body">
+          <form [formGroup]="categoriaForm" (ngSubmit)="agregarCategoria()">
+            <div class="mb-3">
+              <label for="nombre_cat" class="form-label">Nombre de la categoria</label>
+              <input id="imagen" formControlName="nombre_cat" class="form-control" placeholder="Categoria..">
+              <div
+                *ngIf="categoriaForm.get('nombre_cat').invalid && (categoriaForm.get('nombre_cat').dirty || categoriaForm.get('nombre_cat').touched)">
+                <small *ngIf="categoriaForm.get('nombre_cat').errors['required']">El nombre de la categoria es requerida.</small>
+              </div>
+            </div>
+            <div class="mb-3">
+              <label for="imagen_ref" class="form-label">Imagen de referencia</label>
+              <input id="nombre" formControlName="imagen_ref" class="form-control" placeholder="Url de la imagen">
+              <div
+                *ngIf="categoriaForm.get('imagen_ref').invalid && (categoriaForm.get('imagen_ref').dirty || categoriaForm.get('imagen_ref').touched)">
+                <small *ngIf="categoriaForm.get('imagen_ref').errors['required']">La imagen de referencia es requerida.</small>
+              </div>
+            </div>
+            <div class="mb-3">
+              <label for="imagen_bg" class="form-label">Imagen de fondo</label>
+              <input type="text" id="precio" formControlName="imagen_bg" class="form-control" placeholder="Url del fondo">
+              <div
+                *ngIf="categoriaForm.get('imagen_bg').invalid && (categoriaForm.get('imagen_bg').dirty || categoriaForm.get('imagen_bg').touched)">
+                <small *ngIf="categoriaForm.get('imagen_bg').errors['required']">La imagen de fondo es requerida.</small>
+              </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Agregar categoria</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

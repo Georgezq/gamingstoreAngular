@@ -1,0 +1,16 @@
+.content-options ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.content-options li {
+  position: relative;
+}
+
+.active{
+  color: #ff5400;
+  transition: ease-out .2s;
+}
+
+
+

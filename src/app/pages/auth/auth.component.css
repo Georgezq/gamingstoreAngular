@@ -7,7 +7,7 @@
 }
 
 .login-user:hover, .login-password:hover, .signup-user:hover, .signup-password:hover{
-  box-shadow: inset 0 0 0 2px #ff5400;
+  box-shadow: inset 0 0 0 2px #ff5400;  
 }
 
 input:focus{

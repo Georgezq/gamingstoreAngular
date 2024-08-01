@@ -5,8 +5,8 @@ import { ComunidadComponent } from './pages/comunidad/comunidad.component';
 import { NoticiasComponent } from './pages/noticias/noticias.component';
 import { SoporteComponent } from './pages/soporte/soporte.component';
 import { AuthComponent } from './pages/auth/auth.component';
-import { SidenavComponent } from './components/Generales/sidenav/sidenav.component';
-import { TiendaJuegoComponent } from './components/porPagina/tienda-juego/tienda-juego.component';
+import { SidenavComponent } from './components/porPagina/Administrador/sidenav/sidenav.component';
+import { TiendaJuegoComponent } from './components/porPagina/Compras/tienda-juego/tienda-juego.component';
 import { DashboardComponent } from './components/porPagina/user-admin/dashboard/dashboard.component';
 import { ConfiguracionUserComponent } from './components/porPagina/user-admin/settings-component/configuracion-user/configuracion-user.component';
 import { WishlistComponent } from './components/porPagina/user-admin/wishlist/wishlist.component';
@@ -17,10 +17,23 @@ import { UpdateAuthComponent } from './components/porPagina/user-admin/settings-
 import { authVerifiedGuard } from './guards/auth/auth-verified.guard';
 import { UserPageVisitanteComponent } from './pages/user-page/user-page-visitante/user-page-visitante.component';
 import { profileGuard } from './guards/profile/profile.guard';
-import { CestaComponent } from './components/porPagina/cesta/cesta.component';
 import { AllNoticiasComponent } from './pages/all-noticias/all-noticias.component';
-import { AdminjuegosComponent } from './components/porPagina/adminjuegos/adminjuegos.component';
-import { CardsinfoComponent } from './components/porPagina/cardsinfo/cardsinfo.component';
+import { CardsinfoComponent } from './components/porPagina/Administrador/cardsinfo/cardsinfo.component';
+import { CestaComponent } from './components/porPagina/Compras/cesta/cesta.component';
+import { HeaderAdminComponent } from './components/porPagina/Administrador/header-admin/header-admin.component';
+import { AdminPortadaComponent } from './components/porPagina/Administrador/Opciones/admin-portada/admin-portada.component';
+import { AdminJuegoseinfoComponent } from './components/porPagina/Administrador/Opciones/admin-juegoseinfo/admin-juegoseinfo.component';
+import { AdminjuegosComponent } from './components/porPagina/Administrador/Opciones/admin-juegoseinfo/adminjuegos/adminjuegos.component';
+import { VistaJuegosComponent } from './components/porPagina/Administrador/Opciones/admin-juegoseinfo/vista-juegos/vista-juegos.component';
+import { AdminCategoriasComponent } from './components/porPagina/Administrador/Opciones/admin-categorias/admin-categorias.component';
+import { AdminCatComponent } from './components/porPagina/Administrador/Opciones/admin-categorias/admin-cat/admin-cat.component';
+import { VistaCategoriasComponent } from './components/porPagina/Administrador/Opciones/admin-categorias/vista-categorias/vista-categorias.component';
+import { AdminNoticiasComponent } from './components/porPagina/Administrador/Opciones/admin-noticias/admin-noticias.component';
+import { NoticiasContentComponent } from './components/porPagina/noticias-content/noticias-content.component';
+import { InicioNoticiasComponent } from './components/porPagina/noticias-content/inicio-noticias/inicio-noticias.component';
+import { loginGuard } from './guards/login/login.guard';
+import { roleGuard } from './guards/roles/role.guard';
+import { SuccessfulComponent } from './components/porPagina/Compras/successful/successful.component';
 
 export const routes: Routes = [
 
@@ -30,20 +43,44 @@ export const routes: Routes = [
   {path: 'comunidad', component: ComunidadComponent, title: 'Comunidad'},
   {path: 'noticias', component: NoticiasComponent, title: 'Noticias'},
   {path: 'soporte', component: SoporteComponent, title: 'Soporte'},
-  {path: 'noticia/:titulo', component: AllNoticiasComponent, data: { hideNavbarFooter: true }},
+
+  {path: 'newsGaming', component: NoticiasContentComponent, title: 'Noticias de Videojuegos', data: { hideNavbarFooter: true },
+    children: [
+      {path: 'noticias', component: InicioNoticiasComponent, data: { hideNavbarFooter: true }},
+      {path: 'noticia/:titulo', component: AllNoticiasComponent, data: { hideNavbarFooter: true }},
+    ]
+  },
 
 
   {path: 'comprar/:id', component: TiendaJuegoComponent, data: { hideNavbarFooter: true }},
 
   //Auth
-  {path: 'login', component: AuthComponent, title: 'Iniciar Sesión' ,data: { hideNavbarFooter: true }},
+  {path: 'login', component: AuthComponent, title: 'Iniciar Sesión' ,data: { hideNavbarFooter: true }, canActivate: [loginGuard] },
 
   //Administracion
-  {path: 'admin', component: SidenavComponent, data: { hideNavbarFooter: true }, canActivate: [authVerifiedGuard],
+  {path: 'admin', component: SidenavComponent, data: { hideNavbarFooter: true }, canActivate: [authVerifiedGuard, roleGuard],
     children: [
       {path: 'info-cards', component: CardsinfoComponent,  data: { hideNavbarFooter: true }},
-      {path: 'juegos', component: AdminjuegosComponent,  data: { hideNavbarFooter: true }},
-      {path: '**', pathMatch:'full', redirectTo: 'info-cards'}
+      {path: 'options', component: HeaderAdminComponent,  data: { hideNavbarFooter: true },
+      children: [
+        //{path: 'noticias-admin'},
+        {path: 'noticias-admin', component: AdminNoticiasComponent, data: { hideNavbarFooter: true }},
+        {path: 'portada-admin', component: AdminPortadaComponent, data: { hideNavbarFooter: true }},
+        {path: 'juegos-admin', component: AdminJuegoseinfoComponent, data: { hideNavbarFooter: true },
+          children: [
+            {path: 'juegos-add', component: AdminjuegosComponent, data: { hideNavbarFooter: true }},
+            {path: 'juegos-view', component: VistaJuegosComponent, data: { hideNavbarFooter: true }},
+            {path: '**', pathMatch:'full', redirectTo: 'juegos-add'}
+        ]},
+        {path: 'categorias-admin', component: AdminCategoriasComponent, data: { hideNavbarFooter: true },
+          children: [
+            {path: 'categorias-add', component: AdminCatComponent, data: { hideNavbarFooter: true }},
+            {path: 'categorias-view', component: VistaCategoriasComponent, data: { hideNavbarFooter: true }},
+            {path: '**', pathMatch:'full', redirectTo: 'categorias-add'}
+        ]},
+
+      ]},
+      {path: '**', pathMatch:'full', redirectTo: 'options'}
     ]
   },
 
@@ -69,8 +106,13 @@ export const routes: Routes = [
 
   //Aqui pretendo hacer la compra del juego
 
-  {path: 'carrito', component: CestaComponent},
+  {path: 'carrito', component: CestaComponent, data: { hideNavbarFooter: true },
+    children: [
+    ]
+  },
+  {path: 'successfull', component: SuccessfulComponent, data: {hideNavbarFooter: true}},
 
-  {path: '**', pathMatch:'full', redirectTo: 'home'}
+
+  {path: '', pathMatch:'full', redirectTo: 'home', data: { hideNavbarFooter: true },}
 
 ];

@@ -1,0 +1,57 @@
+<div class="container-fluid my-4">
+
+  <div class="content-comments-news">
+    <h2 class="fs-4 text-white my-5">{{totalComentarios}} Comentarios</h2>
+  </div>
+
+  <div class="container">
+
+    <div class="content-form-input d-flex flex-row align-items-center justify-content-center gap-3 mb-5">
+
+      <div class="content-image-user">
+          <img id="userLogged" class="rounded-circle" style="width: 50px; height: 50px;" [src]="photoUrl"
+          appDefaultProfileImage>
+      </div>
+      <form [formGroup]="comentarioForm" (ngSubmit)="sendComents()" class="w-100 d-flex align-items-center justify-content-center">
+        <div class="content-input w-100 ">
+          <input type="text" class="name-user form-control" formControlName="comentario" placeholder="Participa en la conversión">
+        </div>
+
+      <div class="content-icon-send">
+        <button type="submit" style="background-color: transparent; border: none;">
+          <i class="bi bi-send fs-2" style="color: #ff6600;"></i>
+        </button>
+      </div>
+    </form>
+    </div>
+
+
+    <div class="content-comentarios d-flex flex-column gap-4 mb-5">
+      @for (comentario of comentarios; track $index) {
+      <div class="content d-flex flex-row gap-4">
+        <div class="content-image-user-comment">
+          <img [src]="comentario.imagenperfil" appDefaultProfileImage class="rounded-circle" style="width: 50px; height: 50px;">
+        </div>
+
+        <div class="content-comment">
+          <div class="username">
+            <span style="color: #ff6600;"> {{comentario.username}} </span>
+          </div>
+          <div class="date-of-comment text-white">
+            <span> {{comentario.comentario}} </span>
+          </div>
+          <div class="comment">
+
+          </div>
+
+          <div class="options-of-comment">
+
+          </div>
+
+        </div>
+      </div>
+    }
+    </div>
+
+  </div>
+</div>

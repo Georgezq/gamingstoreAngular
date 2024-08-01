@@ -9,7 +9,6 @@ export const authVerifiedGuard: CanActivateFn = (route, state) => {
   if (authService.isLogged()) {
     return true;
   } else {
-    router.navigate(['login']);
     return false;
   }
 };

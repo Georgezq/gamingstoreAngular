@@ -1,0 +1,27 @@
+<div class="container-fluid text-white">
+  <div class="content-header m-3">
+    <h4>Panel de Control</h4>
+  </div>
+
+  <div class="content-options mt-5">
+    <ul class="d-flex flex-row justify-content-evenly">
+      <li>
+        <a routerLink="noticias-admin" routerLinkActive="active">Noticias</a>
+      </li>
+      <li>
+        <a routerLink="portada-admin" routerLinkActive="active">Portada</a>
+      </li>
+      <li>
+        <a routerLink="categorias-admin" routerLinkActive="active">Categorías</a>
+      </li>
+      <li>
+        <a routerLink="juegos-admin" routerLinkActive="active">Juegos e Información</a>
+      </li>
+    </ul>
+    <p-divider></p-divider>
+  </div>
+
+  <div class="content-components h-100">
+    <router-outlet></router-outlet>
+  </div>
+</div>

@@ -1,0 +1,81 @@
+<div class="container text-white my-5">
+
+
+  <div class="row container">
+
+    <div class=" col-8  d-flex flex-column align-items-start justify-content-center content-gamesBefore">
+      <div class="content-text text-start my-3">
+        <span class="fs-4 text-start">Cesta</span>
+      </div>
+      <div class="content-games w-100">
+       @if (carritotList.length != 0){
+        <div class="game ">
+          @for (game of carritotList; track $index) {
+
+              <div class="content-cart d-flex flex-row  px-5 my-4 gap-4">
+                <div class="content-img my-3">
+                  <img [src]="game.imagen" alt="">
+                </div>
+               <div class="info d-flex flex-column align-items-start justify-content-center w-100">
+                <div class="content-information d-flex flex-row align-items-center justify-content-between w-100 gap-3 ">
+                  <div class="content-name d-flex align-items-center justify-content-start">
+                    <span class="fs-6 ">{{game.nombre}}</span>
+                  </div>
+                  <div class="content-price d-flex align-items-center justify-content-end">
+                    <span class="fs-5">{{game.precio | currency}}</span>
+                  </div>
+                </div>
+                <div class="content-removeItem">
+                  <button (click)="removeItem(game.id)">
+                    <i class="bi bi-trash fs-5"></i>
+                  </button>
+                </div>
+               </div>
+              </div>
+
+          }
+        </div>
+       } @else{
+        <div class="content-games">
+          <div class="enought-cart p-5 my-4 d-flex flex-column align-items-center justify-content-center">
+            <div class="content-icon">
+              <i class="bi bi-cart-plus fs-1" > </i>
+            </div>
+            <div class="content-text">
+              <span class="fs-4">Tu cesta está vacía</span>
+            </div>
+            <div class="info-text text-center my-3">
+              <span class="fs-6" style="color: #999;">No has añadido ningún producto a tu cesta todavía. ¡Navega por la web y encuentra ofertas increíbles!</span>
+            </div>
+            <div class="button-juegos mt-4">
+              <button [routerLink]="['/tendencias']"  class="text-white p-3">Descubre juegos</button>
+            </div>
+          </div>
+        </div>
+       }
+      </div>
+    </div>
+
+    <div class="col-4 content-gamesBefore ">
+      <div class="content-text text-start my-3">
+        <span class="fs-4 text-start">Resumen</span>
+      </div>
+      <div class="content-pago p-5 w-100  d-flex flex-column ">
+       <div class="content-precio d-flex flex-row justify-content-between">
+        <div class="precio-oficial w-100">
+          <span class="fs-6">Precio oficial: </span>
+        </div>
+        <div class="content-precio">
+          {{totalPrice | currency}}
+        </div>
+       </div>
+
+        <div class="btn-pay d-flex align-items-center justify-content-center w-100 ">
+          <button class="paybtn text-white mt-5 py-3 px-5" (click)="onProceedToPay()">Proceder con el pago</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+

@@ -1,5 +1,5 @@
 export interface Juegos extends JuegosForm{
-  id?: string;
+  id?: any;
 }
 
 export interface JuegosForm {
@@ -7,5 +7,5 @@ export interface JuegosForm {
   nombre: string;
   precio: number;
   video: string;
-  portada: string;
+  portada?: string;
 }

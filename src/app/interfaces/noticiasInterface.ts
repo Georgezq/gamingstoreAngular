@@ -8,5 +8,6 @@ export interface Noticias {
   autor: string;
   Etiquetas: [],
   fuente: string;
+  nombre_pagina?: string,
   fecha_creacion: Date;
 }

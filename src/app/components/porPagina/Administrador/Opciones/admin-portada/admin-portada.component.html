@@ -1,0 +1,55 @@
+<div class="container my-5">
+
+  <div class="content-text my-4">
+    <h4>Portada del Inicio de la página</h4>
+  </div>
+
+  <div class="content-oldportada">
+
+    <div class="content-oldPortada d-flex flex-row gap-5 align-items-center justify-content-center">
+      <img class="img-fluid w-75 object-fit-cover" [src]="imagen" [alt]="nombre">
+
+      <div class="content-info">
+        <span> Nombre del juego: <p class="fw-bold">{{nombre}}</p> </span>
+        <span> Precio: <p class="fw-bold">{{precio | currency}}</p> </span>
+      </div>
+    </div>
+  </div>
+
+  <div class="content-newportada my-5">
+
+    <div class="content-form">
+      <form [formGroup]="portadForm" (ngSubmit)="onSubmit()">
+
+        <span class="fs-5">Actualice una nueva portada </span>
+
+        <div class="row">
+          <div class="col my-4">
+            <label for="nombre" class="form-label fs-5">Nombre del Juego</label>
+            <input type="text" class="name-user form-control w-50" formControlName="nombre">
+          </div>
+          <div class="col my-4">
+            <label for="imagen" class="form-label fs-5">Imagen del Juego</label>
+            <input type="text" class="name-user form-control w-50" formControlName="imagen">
+          </div>
+        </div>
+
+        <div class="row d-flex align-items-center justify-content-center">
+          <div class="col my-2">
+            <label for="precio" class="form-label fs-5">Precio del Juego</label>
+            <input type="number" class="name-user form-control w-50" formControlName="precio">
+          </div>
+          <div class="col my-2 ">
+            <button type="submit" class="btn updateData px-3 py-2">Enviar</button>
+          </div>
+        </div>
+
+      </form>
+
+
+    </div>
+
+  </div>
+
+
+</div>

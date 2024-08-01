@@ -8,7 +8,7 @@
 
       <div class="content-info-new d-flex flex-row gap-3">
         <div class="date">
-          <span class="fs-5">Publicado el {{noticia.fecha_creacion | date:'dd/MM/yyyy'}} </span>
+          <span class="fs-5">Publicado el {{noticia.fecha_creacion }} </span>
         </div>
         <div class="author">
           <p class="fs-5" style="color: #b7b7b7;">Por: <span class="fs-5 text-white">{{noticia.autor}}</span> </p>
@@ -34,8 +34,9 @@
 
 
       <div class="content-fuente my-4">
-        <p class="fs-5" style="color: #b7b7b7;">Fuente: <a [href]="noticia.fuente" target="_blank">{{noticia.fuente}}</a></p>
-      </div>
+        <p class="fs-5" style="color: #b7b7b7;">Fuente: <a [href]="noticia.fuente" target="_blank">
+          {{ noticia.nombre_pagina }}
+        </a></p>      </div>
 
       <div class="content-etiquetas my-4">
           @for (etiquetas of noticia.Etiquetas; track $index) {
@@ -50,8 +51,9 @@
   </div>
 </div>
 
-<div class="container">
-  <div class="content-comments-news">
-    <h2 class="fs-4 text-white my-5">{{0}} Comentarios</h2>
+<div class="container my-5">
+  <div class="content-comments mb-5">
+    <app-comentarios></app-comentarios>
   </div>
+
 </div>

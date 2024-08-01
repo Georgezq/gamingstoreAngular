@@ -7,14 +7,39 @@
 
     <div class="content-message my-4 d-flex align-items-center justify-content-center ">
 
-      <div class="alert-message rounded-3 text-center d-flex align-items-center justify-content-center px-5">
+      <div class="game " *ngIf="carritotList.length > 0; else noPedidos">
+        @for (game of carritotList; track $index) {
+
+        <div class="content-cart d-flex flex-row  px-5 my-4 gap-4" >
+          <div class="content-img my-3">
+            <img [src]="game.imagen" alt="">
+          </div>
+          <div class="info d-flex flex-column align-items-start justify-content-center w-100">
+            <div class="content-information d-flex flex-row align-items-center justify-content-between w-100 gap-3 ">
+              <div class="content-name d-flex align-items-center justify-content-start">
+                <span class="fs-6 ">{{game.nombre}}</span>
+              </div>
+              <div class="content-price d-flex align-items-center justify-content-end">
+                <span class="fs-5">{{game.precio | currency}}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        }
+      </div>
+
+      <ng-template #noPedidos>
+        <div class="alert-message rounded-3 text-center d-flex align-items-center justify-content-center px-5">
           <span class="mesaage ">
             No tienes compras en este momento
           </span>
-      </div>
+        </div>
+      </ng-template>
 
     </div>
 
+
+
   </div>
 </div>
-

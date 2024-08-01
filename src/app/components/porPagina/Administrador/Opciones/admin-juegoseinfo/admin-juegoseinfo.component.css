@@ -1,0 +1,18 @@
+ul{
+  list-style: none;
+}
+
+ul li:hover .title {
+  color: #ff4020;
+  transition: .2s ease-in;
+}
+
+.active{
+  color: #ff4020;
+}
+
+.separator{
+  width: 1px;
+  margin: 0 auto;
+  background: hsla(0, 0%, 100%, .1)
+}

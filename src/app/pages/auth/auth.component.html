@@ -8,8 +8,11 @@
         </a>
       </div>
 
-      <div class="opciones w-75 mx-auto">
+      <div class="opciones w-75 mx-auto" *ngIf="showLogin">
         <h5 class="my-4 fw-bold">Inicia sesión</h5>
+      </div>
+      <div class="opciones w-75 mx-auto" *ngIf="!showLogin">
+        <h5 class="my-4 fw-bold">Registrate</h5>
       </div>
 
       <div class="loginGoogle mx-auto w-75 mb-5 d-flex align-items-center justify-content-center gap-4">
@@ -18,9 +21,9 @@
           <img src="assets/icons/icongoogle.svg" alt="">
         </button>
 
-        <button class="btnLogin text-white rounded-3 px-4 py-1 " style="background-color: #1976d2;" (click)="loginFacebook()">
+        <!-- <button class="btnLogin text-white rounded-3 px-4 py-1 " style="background-color: #1976d2;" (click)="loginFacebook()">
           <img src="assets/icons/facebook.png" style="width: 48px; height: 48px;" alt="">
-        </button>
+        </button> -->
 
         <button class="btnLogin text-white rounded-3 px-4 py-1 " (click)="loginGithub()">
           <img src="assets/icons/iconsgithub.svg" alt="">
@@ -34,7 +37,13 @@
         <div class="formulario-login mx-auto">
           <div class="login d-flex flex-column  mx-auto gap-4">
               <input type="email" id="login-user"  name="email" formControlName="email" placeholder="Usuario" class="login-user rounded-3 border-0 py-2" style="background-color: hsla(0, 0%, 6%, .4); ">
+              <div *ngIf="formReg.get('email').invalid && formReg.get('email').touched">
+                Por favor ingrese un correo valido.
+              </div>
               <input type="password" id="login-password" name="password" formControlName="password" placeholder="Contraseña" class="login-password rounded-3 border-0 py-2" style="background-color: hsla(0, 0%, 6%, .4); ">
+              <div *ngIf="formReg.get('password').invalid && formReg.get('password').touched">
+                La contraseña debe ser de al menos 6 caracteres.
+              </div>
               <button type="submit" class="btn text-white px-4 py-2 w-75 mx-auto" id="btnSignIn">Iniciar Sesión</button>
           </div>
           <div class="register-route mx-auto my-4 text-center">
@@ -45,11 +54,16 @@
 
     <form id="formulario-crear" *ngIf="!showLogin" [formGroup]="formReg" (submit)="registerWithEmailAndPassword()">
       <div class="formulario-registro mx-auto">
-        <h5 class="mb-4 fw-bold">¡Registrate!</h5>
-        <div class="login d-flex flex-column w-75 mx-auto gap-4">
-            <input type="text" id="signup-user" placeholder="Usuario" formControlName="email" class="signup-user rounded-3 border-0 py-2" style="background-color: hsla(0, 0%, 6%, .4); ">
+        <div class="login d-flex flex-column mx-auto gap-4">
+            <input type="email" id="signup-user" placeholder="Usuario" formControlName="email" class="signup-user rounded-3 border-0 py-2" style="background-color: hsla(0, 0%, 6%, .4); ">
+            <div *ngIf="formReg.get('email').invalid && formReg.get('email').touched">
+              Por favor ingrese un correo valido.
+            </div>
             <input type="password" id="signup-password" placeholder="Contraseña" formControlName="password" class="signup-password rounded-3 border-0 py-2" style="background-color: hsla(0, 0%, 6%, .4); ">
-            <button type="submit" class="btn text-white px-4 py-2" id="btnSignUp">Registrate</button>
+            <div *ngIf="formReg.get('password').invalid && formReg.get('password').touched">
+              La contraseña debe ser de al menos 6 caracteres.
+            </div>
+            <button type="submit" class="btn text-white px-4 py-2 w-75 mx-auto" id="btnSignUp">Registrate</button>
             <a class="mx-auto pointe" (click)="toggleForm()" id="login-link">¿Ya tienes cuenta?, Inicia sesión!</a>
         </div>
     </div>

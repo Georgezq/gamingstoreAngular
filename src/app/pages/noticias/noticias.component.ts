@@ -3,10 +3,7 @@ import { NoticiasService } from '../../services/dynamo/noticias/noticias.service
 import { Noticias } from '../../interfaces/noticiasInterface';
 import { Router, RouterLink } from '@angular/router';
 import { JuegosService } from '../../services/firebase/games/juegos.service';
-import { Juegos } from '../../interfaces/juegosInterface';
 import { CurrencyPipe } from '@angular/common';
-import { id } from 'date-fns/locale';
-import { Informacion } from '../../interfaces/informacionInterface';
 
 @Component({
   selector: 'app-noticias',
@@ -79,7 +76,7 @@ export class NoticiasComponent implements OnInit {
   }
 
   goToNoticia(titulo: string, id: string): void {
-    this.router.navigate(['/noticia', this.formatTitulo(titulo)], { queryParams: { noticias: id } });
+    this.router.navigate(['newsGaming/noticia', this.formatTitulo(titulo)], { queryParams: { noticias: id } });
   }
 
 

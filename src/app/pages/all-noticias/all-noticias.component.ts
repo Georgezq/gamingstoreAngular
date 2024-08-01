@@ -3,11 +3,12 @@ import { NoticiasService } from '../../services/dynamo/noticias/noticias.service
 import { Noticias } from '../../interfaces/noticiasInterface';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DatePipe } from '@angular/common';
+import { ComentariosComponent } from '../../components/porPagina/comentarios/comentarios.component';
 
 @Component({
   selector: 'app-all-noticias',
   standalone: true,
-  imports: [DatePipe],
+  imports: [DatePipe, ComentariosComponent],
   templateUrl: './all-noticias.component.html',
   styleUrl: './all-noticias.component.css'
 })

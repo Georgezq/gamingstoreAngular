@@ -1,0 +1,176 @@
+<div class="container my-5">
+
+  <div class="content-text my-4">
+    <h4>Crea una nueva noticia!</h4>
+  </div>
+
+  <div class="content-newportada my-5">
+
+    <div class="content-form">
+      <form [formGroup]="noticiaForm" (ngSubmit)="sendNews()">
+        <div class="row">
+          <div class="col my-4">
+            <label for="titulo" class="form-label fs-5">Titulo de tu noticia*</label>
+            <input type="text" class="name-user form-control w-75" formControlName="titulo">
+            <div
+              *ngIf="noticiaForm.get('titulo').invalid && (noticiaForm.get('titulo').dirty || noticiaForm.get('titulo').touched)">
+              <small *ngIf="noticiaForm.get('titulo').errors['required']">El titulo es requerido.</small>
+            </div>
+          </div>
+          <div class="col-6 my-4 ">
+            <label for="imagen" class="form-label fs-5">Imagen referencial de la noticia</label>
+            <input type="text" class="name-user form-control w-75" formControlName="imagen">
+          </div>
+        </div>
+
+        <div class="row d-flex align-items-center justify-content-center">
+          <div class="col my-2">
+            <label for="contenido" class="form-label fs-5">Contenido de la noticia*</label>
+            <textarea class="name-user form-control w-50 " formControlName="contenido"></textarea>
+          </div>
+
+        </div>
+
+        <div class="row">
+          <div class="col my-2 ">
+            <button (click)="aparecerOpcionesSub()" class="btn addSub  px-3 py-2">Añadir Subtitulo</button>
+          </div>
+        </div>
+
+        <ng-container *ngIf="subtituloIf">
+          <div class="row">
+            <div class="col my-4">
+              <label for="subtitulo" class="form-label fs-5">Sub-titulo de tu noticia*</label>
+              <input type="text" class="name-user form-control w-50" formControlName="subtitulo">
+              <div
+                *ngIf="noticiaForm.get('subtitulo').invalid && (noticiaForm.get('subtitulo').dirty || noticiaForm.get('subtitulo').touched)">
+                <small *ngIf="noticiaForm.get('subtitulo').errors['required']">El Sub-titulo es requerido.</small>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col my-4">
+              <label for="contenido_sub" class="form-label fs-5">Contenido*</label>
+              <textarea class="name-user form-control w-50 " formControlName="contenido_sub"></textarea>
+              <div
+              *ngIf="noticiaForm.get('contenido_sub').invalid && (noticiaForm.get('contenido_sub').dirty || noticiaForm.get('contenido_sub').touched)">
+              <small *ngIf="noticiaForm.get('contenido_sub').errors['required']">El contenido es requerido.</small>
+            </div>
+            </div>
+          </div>
+
+        </ng-container>
+
+        <div class="row">
+          <div class="col my-4">
+            <label for="pagina_fuente" class="form-label fs-5">Nombre de la página*</label>
+            <input type="text" class="name-user form-control w-75" formControlName="pagina_fuente">
+            <div
+              *ngIf="noticiaForm.get('pagina_fuente').invalid && (noticiaForm.get('pagina_fuente').dirty || noticiaForm.get('pagina_fuente').touched)">
+              <small *ngIf="noticiaForm.get('pagina_fuente').errors['required']">La pagina de la fuente es
+                requerido.</small>
+            </div>
+          </div>
+          <div class="col my-4">
+            <label for="fuente" class="form-label fs-5">Link de la página*</label>
+            <input type="text" class="name-user form-control w-75" formControlName="fuente">
+            <div
+              *ngIf="noticiaForm.get('fuente').invalid && (noticiaForm.get('fuente').dirty || noticiaForm.get('fuente').touched)">
+              <small *ngIf="noticiaForm.get('fuente').errors['required']">La fuente de la noticia es requerido.</small>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col my-4" formArrayName="etiquetas">
+            <label>Etiquetas:</label>
+            <button class="etiquetas-btn" type="button" (click)="addEtiqueta()">Agregar Etiqueta</button>
+            <div *ngFor="let etiqueta of etiquetas.controls; let i = index"
+              class="mt-3 d-flex flex-row align-items-center justify-content-start">
+              <input class="name-user form-control w-25" [formControlName]="i">
+              <button class="remover" type="button" (click)="removeEtiqueta(i)">Remover</button>
+            </div>
+          </div>
+          <div class="col my-2 ">
+            <button type="submit" class="btn updateData px-3 py-2">Enviar</button>
+          </div>
+        </div>
+
+
+
+      </form>
+
+
+    </div>
+
+  </div>
+
+  <p-divider></p-divider>
+
+  <div class="content-oldportada">
+
+    <span class="fs-3 text-white">Visualiza tu noticia creada </span>
+
+    <div class="content-title my-5">
+      <h2 class="fw-bold">
+        <p class="fw-bold">{{ noticiaForm.get('titulo')?.value }}</p>
+      </h2>
+    </div>
+
+    <div class="content-info-new d-flex flex-row gap-3">
+      <div class="date">
+        <span class="fs-5">Publicado el {{todayDate}} </span>
+      </div>
+      <div class="author d-flex flex-row">
+        <span class="fs-5" style="color: #b7b7b7;">
+          Por:
+          <span class="fs-5 text-white">
+            {{displayName}}
+          </span>
+        </span>
+      </div>
+    </div>
+
+    <div class="content-image">
+      <img [src]="noticiaForm.get('imagen')?.value" class="img-fluid w-100">
+    </div>
+
+    <div class="content-text my-4">
+      <span>
+        <p>{{ noticiaForm.get('contenido')?.value }}</p>
+      </span>
+    </div>
+
+    <div class="content-subtitle my-4">
+      <p class="fs-4">
+        {{ noticiaForm.get('subtitulo')?.value }}
+      </p>
+    </div>
+
+    <div class="content-textsub my-4">
+      <p>{{ noticiaForm.get('contenido_sub')?.value }}</p>
+    </div>
+
+
+
+    <div class="content-fuente my-4">
+      <p class="fs-5" style="color: #b7b7b7;">Fuente: <a [href]="noticiaForm.get('fuente')?.value" target="_blank">
+          {{ noticiaForm.get('pagina_fuente')?.value }}
+        </a></p>
+    </div>
+
+    <div class="content-etiquetas my-4">
+
+      <ul class="navegacion" *ngFor="let etiqueta of etiquetas.controls; let i = index">
+        <li>
+          {{ etiqueta.value }}<span *ngIf="i < etiquetas.controls.length - 1"> </span>
+        </li>
+      </ul>
+
+    </div>
+
+  </div>
+
+
+</div>

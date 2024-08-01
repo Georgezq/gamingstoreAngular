@@ -1,18 +1,22 @@
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Component, OnInit, inject } from '@angular/core';
-import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AuthService } from '../../../../../services/firebase/auth/auth.service';
 import { Usuario } from '../../../../../interfaces/usuarioInterface';
-import { NgFor } from '@angular/common';
+import { NgFor, NgIf } from '@angular/common';
+import { ToastModule } from 'primeng/toast';
+import { ConfirmationService, MessageService } from 'primeng/api';
+import {  ConfirmDialogModule } from 'primeng/confirmdialog';
 
 @Component({
   selector: 'app-profile-update',
   standalone: true,
-  imports: [ReactiveFormsModule, HttpClientModule, NgFor],
+  imports: [ReactiveFormsModule, HttpClientModule, NgFor, NgIf,ToastModule,
+    ConfirmDialogModule
+  ],
   templateUrl: './profile-update.component.html',
   styleUrl: './profile-update.component.css',
-  providers: [HttpClient, AuthService]
-
+  providers: [HttpClient, AuthService, MessageService, ConfirmationService]
 })
 export class ProfileUpdateComponent implements OnInit {
 
@@ -21,7 +25,7 @@ export class ProfileUpdateComponent implements OnInit {
   discord: string;
   steam: string;
   youtube: string;
-  
+
 
   auth$ = inject(AuthService);
 
@@ -35,7 +39,7 @@ export class ProfileUpdateComponent implements OnInit {
     }
   };
 
-  constructor(private fb: FormBuilder){}
+  constructor(private fb: FormBuilder, private messageService: MessageService){}
 
 
   ngOnInit(): void {
@@ -81,33 +85,53 @@ export class ProfileUpdateComponent implements OnInit {
     this.userForm = this.fb.group({
       displayName: [''], // Inicializamos el control con una cadena vacía
       redesSociales: this.fb.group({
-        discord: [''],
-        steam: [''],
-        youtube: ['']
+        discord: ['', ],
+        steam: ['', [Validators.pattern('https?://.+')]],
+        youtube: ['', [Validators.pattern('https?://.+')]]
       })
     });
   }
 
+  get redesSociales() {
+    return this.userForm.get('redesSociales') as FormGroup;
+  }
+
+  // Método para mostrar mensajes de error si es necesario
+  getUrlErrorMessage(controlName: string): string {
+    const control = this.redesSociales.get(controlName);
+    if (control?.hasError('pattern')) {
+      return 'Por favor ingrese una URL válida';
+    }
+    return '';
+  }
+
   onSubmit() {
-    const userData: Usuario = {
-      displayName: this.userForm.value.displayName,
-      redesSociales: {
-        discord: this.userForm.value.redesSociales.discord,
-        steam: this.userForm.value.redesSociales.steam,
-        youtube: this.userForm.value.redesSociales.youtube,
-      }
-    };
+    if(this.userForm.valid){
+      const userData: Usuario = {
+        displayName: this.userForm.value.displayName,
+        redesSociales: {
+          discord: this.userForm.value.redesSociales.discord,
+          steam: this.userForm.value.redesSociales.steam,
+          youtube: this.userForm.value.redesSociales.youtube,
+        }
+      };
 
-    this.auth$.updateUserData(this.userId, userData).subscribe(
-      (response) => {
-        this.userName = '';
-      },
-      (error) => {
-      //  console.error('Error al actualizar datos:', error);
-      }
-    );
+      this.auth$.updateUserData(this.userId, userData).subscribe(
+        (response) => {
+          if(response.redesSociales.discord == '' && response.redesSociales.youtube == '' && response.redesSociales.steam == ''){
+            this.messageService.add({ severity: 'error', summary: '', detail: 'Llene un campo!' });
+          } else {
+            this.messageService.add({ severity: 'info', summary: 'Listo!', detail: 'Tu perfil se ha actualizado' });
+          }
+          this.userName = '';
 
-   // console.log(this.userForm.value);
+        },
+        (error) => {
+        }
+      );
+    } else {
+      this.messageService.add({ severity: 'error', summary: 'Hubo un problema!', detail: 'Revisa correctamente el campo a actualizar' });
+    }
   }
 
 }

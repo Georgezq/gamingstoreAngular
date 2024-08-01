@@ -1,7 +1,6 @@
 export interface Comentarios {
-  id?: string;
-  titulo: string;
-  juegoId: string;
-  autor: string;
+  id_usuario: string;
+  id_noticia: string;
   comentario: string;
+  fecha_publicacion: string;
 }

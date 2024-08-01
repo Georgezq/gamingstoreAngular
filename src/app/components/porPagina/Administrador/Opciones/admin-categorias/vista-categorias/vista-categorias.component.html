@@ -1,0 +1,96 @@
+<mat-form-field>
+  <mat-label>Filtrar</mat-label>
+  <input matInput (keyup)="applyFilter($event)" placeholder="Categorias.." #input>
+</mat-form-field>
+
+
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8 demo-table">
+
+  <ng-container matColumnDef="categoria">
+    <th mat-header-cell *matHeaderCellDef> Nom. Categoria </th>
+    <td mat-cell *matCellDef="let element"> {{element.nombre_cat}} </td>
+  </ng-container>
+
+
+  <ng-container matColumnDef="acciones">
+    <th mat-header-cell *matHeaderCellDef> Control </th>
+    <td mat-cell *matCellDef="let element">
+      <button (click)="abrirFormulario(element.id)">
+        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
+          <rect width="30" height="30" rx="5" fill="#FCB329" />
+          <path
+            d="M11.707 23.2926L21 13.9996L16.586 9.58557L7.293 18.8786C7.16506 19.0067 7.07418 19.167 7.03 19.3426L6 24.5856L11.242 23.5556C11.418 23.5116 11.579 23.4206 11.707 23.2926ZM24 10.9996C24.3749 10.6245 24.5856 10.1159 24.5856 9.58557C24.5856 9.05524 24.3749 8.54663 24 8.17157L22.414 6.58557C22.0389 6.21063 21.5303 6 21 6C20.4697 6 19.9611 6.21063 19.586 6.58557L18 8.17157L22.414 12.5856L24 10.9996Z"
+            fill="white" />
+        </svg>
+      </button>
+      <button (click)="eliminarJuego(element.id)">
+        <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect width="30" height="30" rx="5" fill="#DD1020" />
+          <path
+            d="M18 5H12C10.897 5 10 5.897 10 7V9H6V11H8V23C8 24.103 8.897 25 10 25H20C21.103 25 22 24.103 22 23V11H24V9H20V7C20 5.897 19.103 5 18 5ZM12 7H18V9H12V7ZM20 23H10V11H20V23Z"
+            fill="white" />
+        </svg>
+      </button>
+    </td>
+  </ng-container>
+
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+
+<mat-paginator class="paginator" [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons
+  aria-label="Select page of periodic elements">
+</mat-paginator>
+
+
+
+<ng-container>
+
+  <div class="modal" *ngIf="formularioDireccion">
+    <div class="modal-dialog modal-dialog-centered formulario-direccion"
+      style="max-width: 524px; width: 90%; max-height: 834px; height: 90vh;">
+      <form [formGroup]="categoriaForm" (ngSubmit)="editarJuego()">
+        <div class="modal-content">
+          <h2 class="titulo">Edición de la categoria</h2>
+          <div class="mb-3">
+            <label for="nombre_cat" class="form-label">Nombre de la categoria</label>
+            <input id="imagen" formControlName="nombre_cat" class="form-control" placeholder="Categoria..">
+            <div
+              *ngIf="categoriaForm.get('nombre_cat').invalid && (categoriaForm.get('nombre_cat').dirty || categoriaForm.get('nombre_cat').touched)">
+              <small *ngIf="categoriaForm.get('nombre_cat').errors['required']">El nombre de la categoria es requerida.</small>
+            </div>
+          </div>
+          <div class="mb-3">
+            <label for="imagen_ref" class="form-label">Imagen de referencia</label>
+            <input id="nombre" formControlName="imagen_ref" class="form-control" placeholder="Url de la imagen">
+            <div
+              *ngIf="categoriaForm.get('imagen_ref').invalid && (categoriaForm.get('imagen_ref').dirty || categoriaForm.get('imagen_ref').touched)">
+              <small *ngIf="categoriaForm.get('imagen_ref').errors['required']">La imagen de referencia es requerida.</small>
+            </div>
+          </div>
+          <div class="mb-3">
+            <label for="imagen_bg" class="form-label">Imagen de fondo</label>
+            <input type="text" id="precio" formControlName="imagen_bg" class="form-control" placeholder="Url del fondo">
+            <div
+              *ngIf="categoriaForm.get('imagen_bg').invalid && (categoriaForm.get('imagen_bg').dirty || categoriaForm.get('imagen_bg').touched)">
+              <small *ngIf="categoriaForm.get('imagen_bg').errors['required']">La imagen de fondo es requerida.</small>
+            </div>
+          </div>
+
+          <div class="row pt-3 justify-content-center">
+            <div class="col-md-6 text-md-end mb-3 mb-md-0">
+              <button (click)="cerrarModal()" class="btn btn-cancelar">Cancelar</button>
+            </div>
+            <div class="col-md-6 text-md-start">
+              <button type="submit" class="btn btn-aceptar">Editar</button>
+            </div>
+          </div>
+
+        </div>
+      </form>
+
+    </div>
+  </div>
+
+</ng-container>

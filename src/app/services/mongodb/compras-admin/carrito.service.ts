@@ -23,6 +23,10 @@ export class CarritoService {
     return this.http.get(`${URL_API}carrito/${userId}`)
   }
 
+  obtenerCompradosById(userId: string): Observable<any> {
+    return this.http.get(`${URL_API}comprados/${userId}`)
+  }
+
   obtenerCarritoEstado(userId: string): Observable<any> {
     return this.http.get(`${URL_API}carrito_estado/${userId}`)
   }
@@ -30,6 +34,10 @@ export class CarritoService {
   obtenerCountByUser(userId: string): Observable<any> {
     return this.http.get(`${URL_API}countU/${userId}`);
   }
-  
+
+  obtenerCountComprados(userId: string): Observable<any> {
+    return this.http.get(`${URL_API}countG/${userId}`);
+  }
+
 
 }

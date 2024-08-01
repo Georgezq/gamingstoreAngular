@@ -1,0 +1,111 @@
+.demo-table {
+  width: 100%;
+  background-color: #333;
+}
+
+.paginator{
+  color: white;
+  background-color: #333;
+}
+
+td, th{
+  color: white;
+}
+
+
+.mat-mdc-row .mat-mdc-cell {
+  border-bottom: 1px solid transparent;
+  border-top: 1px solid transparent;
+}
+
+.mat-mdc-row:hover .mat-mdc-cell {
+  border-color: currentColor;
+}
+
+.demo-row-is-clicked {
+  font-weight: bold;
+}
+
+.mat-mdc-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+
+button{
+  background-color: transparent;
+  border: none;
+}
+
+/* Modales */
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 200px;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  padding: 30px;
+}
+
+.file-upload {
+  position: relative;
+  display: inline-block;
+  padding: 10px;
+  border: 1px solid #E2E1E5;
+  /* Color plomo */
+  border-radius: 5px 0px 0px 5px;
+  cursor: pointer;
+  background-color: #E2E2E2;
+  text-align: center;
+}
+
+.file-upload input[type="file"] {
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+
+.btn-cancelar {
+  border: 1px solid #333;
+  border-radius: 8px;
+  color: #333;
+}
+
+.btn-aceptar {
+  background: linear-gradient(10deg,#ff8000,transparent) #ff4020;
+ border-radius: 8px;
+}
+
+.btn-aceptar:active{
+  background: linear-gradient(10deg,#ff8000,transparent) #ff4020;
+
+}
+
+.btn-cancelar:active{
+  border: 1px solid #333;
+  border-radius: 8px;
+  color: #333;
+}
+
+.titulo {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #b2b2b2;
+  font-size: 38px;
+  font-weight: 700;
+}
+
+label{
+  color: #333;
+}

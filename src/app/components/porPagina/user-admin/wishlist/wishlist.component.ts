@@ -25,7 +25,7 @@ export class WishlistComponent implements OnInit {
   deseados: any;
   juegosDetails$: Observable<Juegos[]>; // Observable de array de Juegos
   loading = true; // Bandera para controlar el estado de carga
-  verPreview: boolean = true; 
+  verPreview: boolean = true;
 
   auth$ = inject(AuthService);
   wishlist$ = inject(DeseadosService);
@@ -46,7 +46,7 @@ export class WishlistComponent implements OnInit {
 
     this._toggleSerive.currentState.subscribe(state => {
       this.verPreview = state;
-    }); 
+    });
   }
 
   getIdUser(): void {
@@ -67,7 +67,7 @@ export class WishlistComponent implements OnInit {
               this.wishlistGames.push(juego);
             },
             (error) => {
-              console.error('Error al obtener la información del juego:', error);
+              throw(error)
             }
           );
         });

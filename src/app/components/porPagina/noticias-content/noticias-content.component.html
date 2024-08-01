@@ -1,0 +1,36 @@
+<div class="container-fluid p-0" >
+  <mat-drawer-container class="example-container " style="height: 100vh;">
+    <mat-drawer mode="side" class="p-3 w-100" opened style="max-width: 300px;">
+
+      <div class="container-fluid p-3 text-center">
+       <a [routerLink]="['/']">
+        <p class="text-white fs-4">Gaming Store</p>
+       </a>
+
+        <div class="row d-flex flex-column">
+
+          <div class="col my-4">
+            <a [routerLink]="['noticias']" [routerLinkActive]="'active'">
+              Inicio
+            </a>
+          </div>
+
+          <div class="col my-4" id="asidebutton">
+            <a class="btnaside p-3 rounded-4 fs-6" id="asidebutton"  [routerLink]="['/tendencias']" [routerLinkActive]="'active'">
+              Tienda
+            </a>
+          </div>
+
+        </div>
+
+      </div>
+
+    </mat-drawer>
+    <mat-drawer-content>
+
+     <router-outlet></router-outlet>
+
+    </mat-drawer-content>
+  </mat-drawer-container>
+
+</div>

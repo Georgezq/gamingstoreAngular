@@ -15,6 +15,10 @@ export class ReviewsService {
 
   reviews$: Observable<Reviews[]>;
 
+  getAllReviews(): Observable<any>{
+    return this.http.get(`${URL_API}reviews`);
+   }
+
   //Contar las reviews por juegos
   countReviewsByGame(gameId: string): Observable<any> {
     return this.http.get(`${URL_API}reviews/countG/${gameId}`);
@@ -35,6 +39,7 @@ export class ReviewsService {
   getReviewsByIdGame(id: string): Observable<any>{
    return this.http.get(`${URL_API}reviews/game/${id}`);
   }
+
 
   getReviewsByIdUser(id: string): Observable<any>{
     return this.http.get(`${URL_API}reviews/user/${id}`)

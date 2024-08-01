@@ -1,0 +1,17 @@
+
+<div class="container-fluid w-100 listening-categories d-flex flex-wrap align-items-center justify-content-center ">
+  <div class="container-fluid categories-items mt-4 d-flex flex-wrap align-items-center justify-content-center w-100  gap-4 ">
+
+    @for (cate of categorias | async  ; track cate.id) {
+      <a  class="item-cat d-flex align-items-center d-block position-relative rounded-lg"
+      [style.backgroundImage]="'url(' + cate.imagen_bg + ')'">
+      <div class="content-cat d-flex justify-content-between align-items-center w-100 position-relative z-1">
+        <div class="name-cat fs-4 ps-4 fw-bold text-white z-2">{{cate.nombre_cat}}</div>
+        <div class="cover-cat d-block position-absolute  end-0">
+          <img class="img-fluid position-relative w-auto" [src]="cate.imagen_ref">
+        </div>
+      </div>
+    </a>
+  }
+  </div>
+  </div>

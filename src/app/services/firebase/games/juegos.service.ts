@@ -1,6 +1,6 @@
 import { Injectable, inject } from '@angular/core';
 import { Firestore, collectionData, doc, docData } from '@angular/fire/firestore';
-import { DocumentData, DocumentReference, addDoc, collection, getDocs, query, where } from 'firebase/firestore';
+import { DocumentData, DocumentReference, addDoc, collection, deleteDoc, getDocs, query, updateDoc, where } from 'firebase/firestore';
 import { Observable, map } from 'rxjs';
 import { Juegos } from '../../../interfaces/juegosInterface';
 import { Informacion } from '../../../interfaces/informacionInterface';
@@ -32,6 +32,24 @@ export class JuegosService {
     const _coleccion = collection(this.firestore, 'juegos');
     return collectionData(_coleccion, { idField: 'id' }) as Observable<Juegos[]>;
   }
+
+  obtenerJuegosId(): Observable<string[]> {
+    const _coleccion = collection(this.firestore, 'juegos');
+    return collectionData(_coleccion, { idField: 'id' }).pipe(
+      map((juegos: any[]) => juegos.map(juego => juego.id))
+    );
+  }
+
+  editarJuego(id: any, juegos: Partial<Juegos>): Promise<void> {
+    const destinoDocRef = doc(this.firestore, `juegos/${id}`);
+    return updateDoc(destinoDocRef, juegos);
+  }
+
+  eliminarDestino(id: any): Promise<void> {
+    const destinoDocRef = doc(this.firestore, `juegos/${id}`);
+    return deleteDoc(destinoDocRef);
+  }
+
 
   obtenerJuegoPorId(id: string): Observable<Juegos> {
     const docRef = doc(this.firestore, `juegos/${id}`);

@@ -1,0 +1,51 @@
+<div class="container-fuild my-5">
+
+  <div class="container-fluid my-5">
+    <h4>Administración de categorias de la página de inicio</h4>
+  </div>
+
+  <div class="row">
+    <div class="col-4 d-flex ">
+      <div class="list">
+        <ul>
+
+          <li>
+            <a class="user-link d-flex align-items-center gap-3" [routerLink]="['categorias-add']" [routerLinkActive]="'active'">
+              <div class="content-info">
+                <div class="title">
+                  Añadir
+                </div>
+                <div class="subtitle" style="color: #999;">
+                  Agrega nuevas categorias
+                </div>
+              </div>
+              <div class="icon-arrow"></div>
+            </a>
+          </li>
+
+          <li class="mt-4">
+            <a class="user-link d-flex align-items-center gap-3" [routerLink]="['categorias-view']" [routerLinkActive]="'active'">
+              <div class="content-info">
+                <div class="title">
+                  Vista de las categorias
+                </div>
+                <div class="subtitle" style="color: #999;">
+                  Visualiza, edita o elimina las categorias existentes
+                </div>
+              </div>
+            </a>
+          </li>
+
+        </ul>
+      </div>
+      <div class="separator"></div>
+    </div>
+
+
+
+    <div class="col-8">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+
+</div>

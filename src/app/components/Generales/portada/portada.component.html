@@ -1,10 +1,12 @@
 <div class="image-container ">
   <div class="w-100">
-    <img class="img-fluid" src="https://gaming-cdn.com/img/products/9093/hcover/1920x620/9093.jpg?v=1715876608" alt="Imagen recortada">
+    <img class="img-fluid" [src]="imagen" alt="Imagen recortada">
     <div class="carousel-caption d-none d-md-block position-absolute top-50 text-center">
-      <h1><b class="fs-2">Dying Light 2 Stay Human</b></h1>
+      <h1><b class="fs-2"> {{nombre}} </b></h1>
       <!-- <p-divider  styleClass="hidden md:flex w-25 flex items-center justify-center"/> -->
-      <p class="fs-1">22$</p>
+      <p class="fs-1"> {{precio | currency }}  </p>
     </div>
   </div>
 </div>
+
+

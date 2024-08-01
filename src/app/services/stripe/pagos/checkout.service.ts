@@ -3,7 +3,7 @@ import { Injectable, inject } from '@angular/core';
 import { API, API_KEY_STRIPE,  } from '../../conexion';
 import { Juegos } from '../../../interfaces/juegosInterface';
 import { loadStripe } from '@stripe/stripe-js';
-import { map } from 'rxjs';
+import { map, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -16,15 +16,15 @@ export class CheckoutService {
   constructor() { }
 
   onProceedToPay(juegos: Juegos[], userId: string) {
-    return this._http.post(`${this._url}/checkout`, {items: juegos, userId: userId}).pipe(
-      map(async(res:any) => {
+    return this._http.post(`${this._url}/checkout`, { items: juegos, userId: userId }).subscribe({
+      next: async (res: any) => {
         const stripe = await loadStripe(API_KEY_STRIPE);
         stripe?.redirectToCheckout({ sessionId: res.id });
-      })
-    ).subscribe({
+      },
       error: (err) => {
-        console.error('Error',err);
+        console.error('Error', err);
       }
-    })
+    });
   }
+
 }

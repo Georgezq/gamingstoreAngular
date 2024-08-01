@@ -1,6 +1,6 @@
 import { NgClass, NgIf } from '@angular/common';
 import { Component, OnInit, inject } from '@angular/core';
-import { CardsinfoComponent } from '../../components/porPagina/cardsinfo/cardsinfo.component';
+import { CardsinfoComponent } from '../../components/porPagina/Administrador/cardsinfo/cardsinfo.component';
 import { ActivatedRoute, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { parse, format } from 'date-fns';
 import { es } from 'date-fns/locale';
@@ -54,7 +54,7 @@ export class UserPageComponent implements OnInit{
         } else{
           this.hayLinks = true;
         }
-        
+
         const fecha = res.fechacreacion;
         const correo = res.email;
         if(parsedData.UserName == null) {
@@ -64,8 +64,6 @@ export class UserPageComponent implements OnInit{
         }
 
         this.title$.setTitle(`Perfil de ${this.displayName}`)
-
-
 
         // Crear una instancia de Date a partir de la fecha almacenada
         const fechaDate = new Date(fecha);
@@ -89,8 +87,6 @@ export class UserPageComponent implements OnInit{
   }
 
   ngOnInit(): void {
-      //this.getMyProfile()
-     // this.getUsers();
   }
 
 
