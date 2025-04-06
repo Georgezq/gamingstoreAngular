@@ -2,7 +2,7 @@
 
 // export const API = "http://localhost:3800/api/";
 
-export const URL_API = "http://3.228.77.122/api/mongo/";
+export const URL_API = "https://backend-gaming.onrender.com/api/mongo/";
 
 export const API = "http://3.228.77.122/api/";
 
